@@ -1,0 +1,62 @@
+/*
+    Jack Manges, jm5244@drexel.edu
+    CS530: Assignment 1
+*/
+
+body {
+    font-family: "Avenir";
+    font-size: 1rem;
+    background: #ffffff;
+}
+
+header {
+    background: #006298;
+}
+
+/* for header options when unselected */
+.header-unselected {
+    -webkit-text-fill-color: #FFC600;
+}
+
+/* for header options when selected */
+.header-selected {
+    -webkit-text-fill-color: #eee;
+}
+
+/* For bike table images */
+.table-limit {
+    max-width: 100px;
+}
+
+.dropdown-unselected {
+    -webkit-text-fill-color: #000000;
+}
+
+.btn-primary {
+    background: #507C49;
+    border-color: #406C39;
+}
+
+.btn-primary:hover {
+    background: #608C59;
+    border-color: #406C39;
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.content {
+    padding: 2rem 1.5rem;
+}
+
+.jumbotron {
+    padding: 1.5rem;
+    background: 0;
+}
+
+.jumbotron-image {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
