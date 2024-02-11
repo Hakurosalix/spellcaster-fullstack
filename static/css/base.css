@@ -4,23 +4,23 @@
 */
 
 body {
-    font-family: "Avenir";
-    font-size: 1rem;
-    background: #ffffff;
+    font-family: fantasy;
+    font-size: 1.5rem;
+    background: #2A2A37;
 }
 
 header {
-    background: #006298;
+    background: #2A2A37;
 }
 
 /* for header options when unselected */
 .header-unselected {
-    -webkit-text-fill-color: #FFC600;
+    -webkit-text-fill-color: #E6C384;
 }
 
 /* for header options when selected */
 .header-selected {
-    -webkit-text-fill-color: #eee;
+    -webkit-text-fill-color: #957FB8;
 }
 
 /* For bike table images */
@@ -58,5 +58,33 @@ header {
 
 .jumbotron-image {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 900px;
 }
 
+.jumbotron-heading {
+    font-size: 4.0rem;
+}
+
+.t1 {
+    color: #E6C384;
+}
+
+.t2 {
+    color: #957FB8;
+}
+
+.t3 {
+    color: #7E9CD8;
+}
+
+.t4 {
+    color: #7FB4CA
+}
+
+.t5 {
+    color: #7AA89F;
+}
+
+.t6 {
+    color: #D27E99;
+}
