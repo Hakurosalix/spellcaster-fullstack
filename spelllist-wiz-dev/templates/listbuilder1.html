@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block title %}Builder{%endblock%}
+{%block content%}
+<html data-bs-theme="dark">
+    <body>
+        
+    
+    <h4>Here you can choose the spells you want for your next DnD Spellcaster. 
+        Please provide the name for htis spell list and you may optionally include any information
+        relevant in the Description box
+        div</h4>
+        <div class="container">
+            <form action="/builder2", method="POST">
+                <label for="spellListName">Spell List:</label> <br>
+                <input type="text" name="spellListName"> <br>
+                <label class="form-label" for="spellListDesc">Description:</label> <br>
+                <textarea name="spellListDesc" rows="4"></textarea> <br>
+                <label for="class">Choose your class:</label> <br>
+                <select id="class" name="class">
+                    <option value="bard">Bard</option>
+                    <option value="cleric">Cleric</option>
+                    <option value="druid">Druid</option>
+                    <option value="fighter">Fighter</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="ranger">Ranger</option>
+                    <option value="druid">Druid</option>
+                    <option value="rogue">Rogue</option>
+                    <option value="sorcerer">Sorcerer</option>
+                    <option value="warlock">Warlock</option>
+                    <option value="wizard">Wizard</option>
+                  </select>
+                <br>
+                <input type="submit">
+            </form>
+        </div>
+    </body>
+    
+    <script>
+        function updateDropdownText(selectedClass) {
+            document.getElementById('classDropdown').innerText = selectedClass
+        }
+    </script>
+
+</html>
+{%endblock%}
+

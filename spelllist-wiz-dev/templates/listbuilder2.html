@@ -1,0 +1,23 @@
+{%extends "base.html" %}{% block title %}Builder{%endblock%}
+{% block content %}
+    <h1>an incomplete page</h1>
+    <div id="spell-container"></div>
+
+    {% for spell in all_spells %}
+    {%for item in spell[1:]%}
+    <script>
+            $(document).ready(function () {
+                $('#spell-container').append("{{ item | safe }}");
+            });
+        </script>
+    
+        <script>
+            $(document).ready(function () {
+                const p = document.createElement("p");
+                p.innerHTML = marked("{{ item | safe }}")
+                $('#spell-container').append(p);
+            });
+        </script>
+    {% endfor %}
+        {% endfor %}
+{% endblock %}
