@@ -8,9 +8,14 @@ from passlib.hash import pbkdf2_sha256
 from db import Database
 
 DATABASE_PATH = 'spellcaster.db'
+SPELLS_DB_PATH= 'data/spells.db'
 
 app = Flask(__name__)
 app.secret_key = b'demokeynotreal!'
+
+def get_spells_db():
+    db = Database(SPELLS_DB_PATH)
+    return db
 
 def get_db():
     db = getattr(g, '_database', None)
