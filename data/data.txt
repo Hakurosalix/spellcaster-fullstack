@@ -1,11 +1,32 @@
-
-
-
 sqlite3 spellcaster.db
 
 CREATE TABLE users (
-    id INTEGER PRIMARY KEY,
+    user_id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
     username TEXT NOT NULL,
     encrypted_password TEXT NOT NULL
+);
+
+CREATE TABLE loadouts (
+    loadout_id INTEGER PRIMARY KEY,	// "500001"
+    user_id INTEGER,			// "000001"
+    loadout_name TEXT NOT NULL,		// "Loadout 1"
+    class TEXT NOT NULL,		// "Wizard"
+    description TEXT,			// "..."
+    spell_name TEXT NOT NULL,		// "Fireball"
+);
+
+# Not manually entered
+TABLE spell_info (
+    Name 
+    Spell Level
+    Concentration 
+    Ritual 
+    Range 
+    Components 
+    Duration 
+    Casting Time 
+    Classes 
+    School 
+    Description
 );
