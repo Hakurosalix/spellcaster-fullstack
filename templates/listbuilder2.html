@@ -1,8 +1,14 @@
 {%extends "base.html" %}{% block title %}Builder{%endblock%}
+{%block header%} <script src="static/js/test.js"></script> {%endblock%}
 {% block content %}
     <h1>an incomplete page</h1>
     <div id="spell-container"></div>
-
+    <script>
+            $(document).ready(function () {
+                spellDeck({{ all_spells|tojson|safe }})
+            });
+    </script>
+    <!--
     {% for spell in all_spells %}
     {%for item in spell[1:]%}
     <script>
@@ -19,5 +25,5 @@
             });
         </script>
     {% endfor %}
-        {% endfor %}
+        {% endfor %} -->
 {% endblock %}

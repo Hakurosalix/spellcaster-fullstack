@@ -83,13 +83,11 @@ def logout():
 def builder1():
     return render_template('listbuilder1.html')
 
-
-
 @app.route('/builder2', methods=['POST'])
 def builder2():
     selected_class = (request.form['class'])
     all_spells = get_db().get_class_spells(selected_class)
-    return render_template('listbuilder2.html', all_spells=all_spells)
+    return render_template('listbuilder2.html', all_spells=all_spells, selected_class=selected_class)
 
 
 if __name__ == '__main__':
