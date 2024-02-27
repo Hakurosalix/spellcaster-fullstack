@@ -51,7 +51,7 @@
                                     <a class="nav-link" href="/about">Spell Reference</a>
                                 </li>   
                                 <li class="header-unselected nav-item{% if active == 'Bikes' %} header-selected active{% endif %}">
-                                    <a class="nav-link" href="/bikes">Class Builder</a>
+                                    <a class="nav-link" href="/class_builder" >Class Builder</a>
                                 </li>
                             </ul>
                             <ul class="navbar-nav"> 
@@ -62,6 +62,7 @@
                                     </a>
                                 {% if session['user'] %}
                                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item-text t6">{{ session['user']['username'] }}</a></li>
                                         <li><a class="dropdown-item t1" href="/logout">Logout</a></li>
                                         <li><a class="dropdown-item t1" href="#">My Loadouts</a></li>
                                     </ul>

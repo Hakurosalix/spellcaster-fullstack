@@ -39,6 +39,14 @@ def about():
 def spelllist():
     return render_template('bikes.html')
 
+@app.route('/class_builder', methods=['GET'])
+def class_builder():
+    if 'user' in session.keys():
+        return render_template('class_builder.html')
+    message = "You must be logged in to do that."
+    return render_template('login.html', message=message)
+    
+
 @app.route('/create_user', methods=['GET', 'POST'])
 def create_user():
     if request.method == 'POST':
