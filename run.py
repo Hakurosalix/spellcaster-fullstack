@@ -49,15 +49,19 @@ def class_builder():
 
 @app.route('/create_user', methods=['GET', 'POST'])
 def create_user():
+    message = None
     if request.method == 'POST':
-        name = request.form.get('name')
         username = request.form.get('username')
         typed_password = request.form.get('password')
-        if name and username and typed_password:
-            encrypted_password = pbkdf2_sha256.hash(typed_password)
-            get_db().create_user(name, username, encrypted_password)
-            return redirect('/login')
-    return render_template('create_user.html')
+        retyped_password = request.form.get('retyped_password')
+        if username and typed_password and retyped_password:
+            if typed_password == retyped_password:
+                encrypted_password = pbkdf2_sha256.hash(typed_password)
+                get_db().create_user(username, encrypted_password)
+                return redirect('/login')
+            else:
+                message = "Retyped password does not match typed password, please try again"
+    return render_template('create_user.html', message=message)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
