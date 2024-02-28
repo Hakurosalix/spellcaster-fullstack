@@ -7,6 +7,56 @@ Spell Reference
 
 {% block content %}
 
-<h1 class="t1 py-4">Spell Reference</h1>
+<h1 class="t1 py-4 text-center">Spell Reference</h1>
+
+<div class="container">
+    <form action="/builder2", method="POST">
+        <div class="row align-items-center">
+            <div class="col pe-5">
+                <label for="spell_name" class="t1 form-label">Spell Name:</label> 
+                <input type="text" class="form-control" id="spell_name"> 
+            </div>
+            <div class="col pe-5">
+                <label for="class" class="t1 form-label">Class:</label> 
+                <select id="class" class="form-select">
+                    <option selected>Choose...</option>
+                    <option value="bard">Bard</option>
+                    <option value="cleric">Cleric</option>
+                    <option value="druid">Druid</option>
+                    <option value="fighter">Fighter</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="ranger">Ranger</option>
+                    <option value="druid">Druid</option>
+                    <option value="rogue">Rogue</option>
+                    <option value="sorcerer">Sorcerer</option>
+                    <option value="warlock">Warlock</option>
+                    <option value="wizard">Wizard</option>
+                </select>
+            </div>
+            <div class="col pe-5">
+                <label for="class" class="t1 form-label">School:</label> 
+                <select id="class" class="form-select">
+                    <option selected>Choose...</option>
+                    <option value="bard">Bard</option>
+                    <option value="cleric">Cleric</option>
+                    <option value="druid">Druid</option>
+                    <option value="fighter">Fighter</option>
+                    <option value="paladin">Paladin</option>
+                    <option value="ranger">Ranger</option>
+                    <option value="druid">Druid</option>
+                    <option value="rogue">Rogue</option>
+                    <option value="sorcerer">Sorcerer</option>
+                    <option value="warlock">Warlock</option>
+                    <option value="wizard">Wizard</option>
+                </select>
+            </div>
+            <div class="col text-center">
+                <button type="submit" class="btn btn-lg btn-secondary t1" style="position: absolute; max-height: 4.3%;">Search</button>
+            </div>
+        </div>  
+    </form>
+    <hr class="hr">
+
+</div>
 
 {% endblock %}
