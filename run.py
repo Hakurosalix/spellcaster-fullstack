@@ -35,9 +35,9 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/spelllist')
+@app.route('/spell_reference')
 def spelllist():
-    return render_template('bikes.html')
+    return render_template('spell_reference.html')
 
 @app.route('/class_builder', methods=['GET'])
 def class_builder():

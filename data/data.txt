@@ -7,12 +7,12 @@ CREATE TABLE users (
 );
 
 CREATE TABLE loadouts (
-    loadout_id INTEGER PRIMARY KEY,	// "500001"
-    user_id INTEGER,			// "000001"
-    loadout_name TEXT NOT NULL,		// "Loadout 1"
-    class TEXT NOT NULL,		// "Wizard"
-    description TEXT,			// "..."
-    spell_name TEXT NOT NULL,		// "Fireball"
+    loadout_id INTEGER PRIMARY KEY,	
+    user_id INTEGER,			
+    loadout_name TEXT NOT NULL,		
+    class TEXT NOT NULL,		
+    description TEXT,			
+    spell_name TEXT NOT NULL,		
 );
 
 # Not manually entered
