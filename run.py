@@ -40,12 +40,6 @@ def about():
 def spelllist():
     return render_template('spell_reference.html')
 
-@app.route('/class_builder', methods=['GET'])
-def class_builder():
-    if 'user' in session.keys():
-        return render_template('class_builder.html')
-    message = "You must be logged in to do that."
-    return render_template('login.html', message=message)
     
 
 @app.route('/create_user', methods=['GET', 'POST'])
@@ -93,7 +87,10 @@ def logout():
 
 @app.route('/builder1')
 def builder1():
-    return render_template('listbuilder1.html')
+    if 'user' in session.keys():
+        return render_template('listbuilder1.html')
+    message = "You must be logged in to do that."
+    return render_template('login.html', message=message)
 
 @app.route('/builder2', methods=['POST'])
 def builder2():
