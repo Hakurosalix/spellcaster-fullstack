@@ -1,0 +1,18 @@
+{%extends "base.html" %}{% block title %}Builder{%endblock%}
+{%block header%} <script src="static/js/test.js"></script> {%endblock%}
+{% block content %}
+    <div id="chosen-spells"></div>
+    <a href="#" class="btn btn-primary" id="post-loadout">submit</a>
+    <div id="spell-container"></div>
+    
+    <script>
+            $(document).ready(function () {
+                const selectedClass = '{{ selected_class | safe }}';
+                const spellListName = '{{ spell_list_name | safe }}';
+                const listDesc = '{{ desc | safe }}';
+                const allSpells = new spellDeck(selectedClass, spellListName, listDesc);
+                allSpells.fetchSpells();
+            });
+    </script>
+
+{% endblock %}

@@ -36,33 +36,21 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/spell_reference')
+@app.route('/spelllist')
 def spelllist():
-    return render_template('spell_reference.html')
-
-@app.route('/class_builder', methods=['GET'])
-def class_builder():
-    if 'user' in session.keys():
-        return render_template('class_builder.html')
-    message = "You must be logged in to do that."
-    return render_template('login.html', message=message)
-    
+    return render_template('bikes.html')
 
 @app.route('/create_user', methods=['GET', 'POST'])
 def create_user():
-    message = None
     if request.method == 'POST':
+        name = request.form.get('name')
         username = request.form.get('username')
         typed_password = request.form.get('password')
-        retyped_password = request.form.get('retyped_password')
-        if username and typed_password and retyped_password:
-            if typed_password == retyped_password:
-                encrypted_password = pbkdf2_sha256.hash(typed_password)
-                get_db().create_user(username, encrypted_password)
-                return redirect('/login')
-            else:
-                message = "Retyped password does not match typed password, please try again"
-    return render_template('create_user.html', message=message)
+        if name and username and typed_password:
+            encrypted_password = pbkdf2_sha256.hash(typed_password)
+            get_db().create_user(name, username, encrypted_password)
+            return redirect('/login')
+    return render_template('create_user.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -95,27 +83,14 @@ def logout():
 def builder1():
     return render_template('listbuilder1.html')
 
+
+
 @app.route('/builder2', methods=['POST'])
 def builder2():
     selected_class = (request.form['class'])
-    desc = request.form.get('spellListDesc')
-    spell_list_name = request.form.get('spellListName')
-    return render_template('listbuilder2.html', selected_class=selected_class, desc=desc, spell_list_name=spell_list_name)
+    all_spells = get_db().select(f"SELECT * FROM spell_info WHERE Classes LIKE '%?%'", selected_class)
+    return render_template('listbuilder2.html', all_spells=all_spells)
 
-@app.route('/api/class_spells', methods=['GET'])
-def get_class_spell_list():
-    selected_class = request.args.get('selected_class')
-    return get_db().get_class_spells(selected_class)
-
-@app.route('/api/post_loadout', methods=['POST'])
-def retrieve_loadout():
-    loadout = request.form.getlist('loadout[]')
-    loadout_name = request.form.get('spell_list_name')
-    desc = request.form.get('list_desc')
-    print(loadout_name)
-    print(desc)
-    print(loadout)
-    return redirect('/')
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)

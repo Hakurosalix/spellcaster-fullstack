@@ -33,5 +33,9 @@ class Database:
         else:
             return None
 
+    def get_class_spells(self, selected_class):
+        data = self.select(f"SELECT * FROM spell_info WHERE Classes LIKE '%{selected_class}%'")
+        return data
+
     def close(self):
         self.conn.close()
