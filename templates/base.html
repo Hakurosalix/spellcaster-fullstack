@@ -48,8 +48,8 @@
                                 <li class="header-unselected nav-item{% if active == 'About' %} header-selected active{% endif %}">
                                     <a class="nav-link" href="/about">About Us</a>
                                 </li>   
-                                <li class="header-unselected nav-item{% if active == 'Bikes' %} header-selected active{% endif %}">
-                                    <a class="nav-link" href="/about">Spell Reference</a>
+                                <li class="header-unselected nav-item{% if active == 'Spell Reference' %} header-selected active{% endif %}">
+                                    <a class="nav-link" href="/spell_reference">Spell Reference</a>
                                 </li>   
                                 <li class="header-unselected nav-item{% if active == 'Bikes' %} header-selected active{% endif %}">
                                     <a class="nav-link" href="/builder1">Class Builder</a>
@@ -63,12 +63,14 @@
                                     </a>
                                 {% if session['user'] %}
                                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item-text t6">{{ session['user']['username'] }}</a></li>
                                         <li><a class="dropdown-item t1" href="/logout">Logout</a></li>
                                         <li><a class="dropdown-item t1" href="#">My Loadouts</a></li>
                                     </ul>
                                 {% else %}
                                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item t1" href="/login">Login</a></li>
+                                        <li><a class="dropdown-item t1" href="/create_user">Create Account</a></li>
                                         <!-- <li><a class="dropdown-item t1" href="#">My Loadouts</a></li>  -->
                                     </ul>
                                 </li>

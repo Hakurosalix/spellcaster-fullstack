@@ -16,9 +16,9 @@ class Database:
         c.execute(sql, parameters)
         self.conn.commit()
 
-    def create_user(self, name, username, encrypted_password):
-        self.execute('INSERT INTO users (name, username, encrypted_password) VALUES (?, ?, ?)',
-                     [name, username, encrypted_password])
+    def create_user(self, username, encrypted_password):
+        self.execute('INSERT INTO users (username, encrypted_password) VALUES (?, ?)',
+                     [username, encrypted_password])
 
     def get_user(self, username):
         data = self.select(
@@ -27,9 +27,8 @@ class Database:
             d = data[0]
             return {
                 'id': d[0],
-                'name': d[1],
-                'username': d[2],
-                'encrypted_password': d[3],
+                'username': d[1],
+                'encrypted_password': d[2],
             }
         else:
             return None
