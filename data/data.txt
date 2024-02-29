@@ -12,19 +12,19 @@ CREATE TABLE loadouts (
     loadout_name TEXT NOT NULL,		
     class TEXT NOT NULL,		
     description TEXT,			
-    spell_name TEXT NOT NULL,		
+    spell_name TEXT NOT NULL		
 );
 
 # Not manually entered
 TABLE spell_info (
     Name 
-    Spell Level
+    Spell_Level
     Concentration 
     Ritual 
     Range 
     Components 
     Duration 
-    Casting Time 
+    Casting_Time 
     Classes 
     School 
     Description
