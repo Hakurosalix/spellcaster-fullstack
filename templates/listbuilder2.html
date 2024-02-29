@@ -1,29 +1,18 @@
 {%extends "base.html" %}{% block title %}Builder{%endblock%}
 {%block header%} <script src="static/js/test.js"></script> {%endblock%}
 {% block content %}
-    <h1>an incomplete page</h1>
+    <div id="chosen-spells"></div>
+    <a href="#" class="btn btn-primary" id="post-loadout">submit</a>
     <div id="spell-container"></div>
+    
     <script>
             $(document).ready(function () {
-                spellDeck({{ all_spells|tojson|safe }})
+                const selectedClass = '{{ selected_class | safe }}';
+                const spellListName = '{{ spell_list_name | safe }}';
+                const listDesc = '{{ desc | safe }}';
+                const allSpells = new spellDeck(selectedClass, spellListName, listDesc);
+                allSpells.fetchSpells();
             });
     </script>
-    <!--
-    {% for spell in all_spells %}
-    {%for item in spell[1:]%}
-    <script>
-            $(document).ready(function () {
-                $('#spell-container').append("{{ item | safe }}");
-            });
-        </script>
-    
-        <script>
-            $(document).ready(function () {
-                const p = document.createElement("p");
-                p.innerHTML = marked("{{ item | safe }}")
-                $('#spell-container').append(p);
-            });
-        </script>
-    {% endfor %}
-        {% endfor %} -->
+
 {% endblock %}

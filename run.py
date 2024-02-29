@@ -86,9 +86,24 @@ def builder1():
 @app.route('/builder2', methods=['POST'])
 def builder2():
     selected_class = (request.form['class'])
-    all_spells = get_db().get_class_spells(selected_class)
-    return render_template('listbuilder2.html', all_spells=all_spells, selected_class=selected_class)
+    desc = request.form.get('spellListDesc')
+    spell_list_name = request.form.get('spellListName')
+    return render_template('listbuilder2.html', selected_class=selected_class, desc=desc, spell_list_name=spell_list_name)
 
+@app.route('/api/class_spells', methods=['GET'])
+def get_class_spell_list():
+    selected_class = request.args.get('selected_class')
+    return get_db().get_class_spells(selected_class)
+
+@app.route('/api/post_loadout', methods=['POST'])
+def retrieve_loadout():
+    loadout = request.form.getlist('loadout[]')
+    loadout_name = request.form.get('spell_list_name')
+    desc = request.form.get('list_desc')
+    print(loadout_name)
+    print(desc)
+    print(loadout)
+    return redirect('/')
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)

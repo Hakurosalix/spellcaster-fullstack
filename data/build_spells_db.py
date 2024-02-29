@@ -22,7 +22,7 @@ spells = requests.get('https://www.dnd5eapi.co/api/spells')
 spells_list = json.loads(spells.text)
 spells_list = spells_list['results']
 
-keys_to_keep = {'Name':'name', 'Spell Level':'level', 'Concentration':'concentration', 'Ritual':'ritual', 'Range':'range' , 'Components':'components','Duration':'duration','Casting Time':'casting_time', 'Classes':'classes', 'School':'school','Description':'desc'} 
+keys_to_keep = {'Name':'name', 'Spell_Level':'level', 'Concentration':'concentration', 'Ritual':'ritual', 'Range':'range' , 'Components':'components','Duration':'duration','Casting Time':'casting_time', 'Classes':'classes', 'School':'school','Description':'desc'} 
 spellsdf = pd.DataFrame(columns= list(keys_to_keep.keys()))
 
 for spell in spells_list:
