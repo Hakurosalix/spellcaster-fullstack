@@ -36,6 +36,22 @@ class Database:
     def get_class_spells(self, selected_class):
         data = self.select(f"SELECT * FROM spell_info WHERE Classes LIKE '%{selected_class}%'")
         return data
+    
+    def get_spell(self, Name):
+        data = self.select('SELECT * FROM spell_info WHERE spell_info.Name = ?', [Name])
+        return data
+    
+    def get_user_loadouts(self, user_id):
+        data = self.select('SELECT distinct * FROM loadouts WHERE loadouts.user_id = ?', [user_id])
+        return data
+    
+    def insert_spell_for_loadout(self, user_id, loadout_name, loadout_class, description, spell_name):
+        self.execute('INSERT INTO loadouts(user_id, loadout_name, class, description, spell_name) VALUES (?, ?, ?, ?, ?)',
+                     [user_id, loadout_name, loadout_class, description, spell_name])
+        
+    def get_loadout_spell_names(self, loadout_name):
+        data = self.select('SELECT loadouts.spell_name FROM loadouts WHERE loadouts.loadout_name = ?', [loadout_name])
+        return data
 
     def close(self):
         self.conn.close()
