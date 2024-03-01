@@ -24,7 +24,7 @@ TABLE spell_info (
     Range 
     Components 
     Duration 
-    Casting Time 
+    Casting_Time 
     Classes 
     School 
     Description
