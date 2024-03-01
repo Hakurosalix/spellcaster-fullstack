@@ -50,11 +50,9 @@ def spelllist():
             spell_school = ""
         if spell_level == "Choose...":
             spell_level = ""
-        print("spell_name: {0}".format(spell_name))
-        print(spell_class)
-        print(spell_school)
-        print(spell_level)
         data = get_db().get_reference_spells(spell_name, spell_class, spell_school, spell_level)
+    else:
+        data = get_db().get_reference_spells("", "", "", "")
     
     return render_template('spell_reference.html', data=data)
 
