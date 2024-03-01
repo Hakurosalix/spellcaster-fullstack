@@ -3,7 +3,7 @@
 
 import os
 
-from flask import Flask, g, json, render_template, request, session, redirect
+from flask import Flask, g, json, render_template, request, session, redirect, jsonify
 from passlib.hash import pbkdf2_sha256
 from db import Database
 
@@ -36,9 +36,25 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/spell_reference')
+@app.route('/spell_reference', methods=['GET', 'POST'])
 def spelllist():
-    return render_template('spell_reference.html')
+    data = None
+    if request.method == 'POST':
+        spell_name = request.form.get('spell_name')
+        spell_class = request.form.get('spell_class')
+        spell_school = request.form.get('spell_school')
+        spell_level = request.form.get('spell_level')
+        if spell_class == "Choose...":
+            spell_class = ""
+        if spell_school == "Choose...":
+            spell_school = ""
+        if spell_level == "Choose...":
+            spell_level = ""
+        data = get_db().get_reference_spells(spell_name, spell_class, spell_school, spell_level)
+    else:
+        data = get_db().get_reference_spells("", "", "", "")
+    
+    return render_template('spell_reference.html', data=data)
 
     
 
