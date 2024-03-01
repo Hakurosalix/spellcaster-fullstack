@@ -4,56 +4,33 @@ function spellDeck(selected_class, spellListName, listDesc) {
 
     this.createCards = (spells) => {
         for (let i = 0; i < spells.length; i++){
-                const spellCard = $(`
-                <div class = "card">
-                    <div class = "card-body">
-                        <div class = "row">
-                            <div class = "col-md-2">
-                                Spell
-                            </div>
-                            <div class = "col-md-2">
-                                Spell Level
-                            </div>
-                            <div class = "col-md-2">
-                                Concentration
-                            </div>
-                            <div class = "col-md-2">
-                                Ritual
-                            </div>
-                            <div class = "col-md-2">
-                                Range
-                            </div>
-                            <div class = "col-md-2">
-                                
-                            </div>
-                            
-                        </div>  
-                        <div class = "row">
-                            <div class = "col-md-2">
-                                <p class = "card-text">${spells[i][0]}</p>
-                            </div>
-                            <div class = "col-md-2">
-                                <p class = "card-text">${spells[i][1]}</p>
-                            </div>
-                            <div class = "col-md-2">
-                                <p class = "card-text">${spells[i][2]}</p>
-                            </div>
-                            <div class = "col-md-2">
-                                <p class = "card-text">${spells[i][3]}</p>
-                            </div>
-                            <div class = "col-md-2">
-                                <p class = "card-text">${spells[i][4]}</p>
-                            </div>
-                            <div class = "col-md-2">
-                                <a class = "spell-adder" href = "#" data-index = "${i}">Add/Remove</a>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>`);
-                $('#spell-container').append(spellCard)
+            const spellRow = $(` 
+                <tr>
+                    <td>
+                        <p class = "card-text">${spells[i][0]}</p>
+                    </td>
+                    <td>
+                        <p class = "card-text">${spells[i][1]}</p>
+                    </td>
+                    <td>
+                        <p class = "card-text">${spells[i][2]}</p>
+                    </td>
+                    <td>
+                        <p class = "card-text">${spells[i][3]}</p>
+                    </td>
+                    <td>
+                        <p class = "card-text">${spells[i][4]}</p>
+                    </td>
+                    <td>
+                        <a class = "spell-adder" href = "#" data-index = "${i}">Add/Remove</a>
+                    </td>
+                </tr>
+            `);
+            $('#spell-container tbody').append(spellRow);
 
         }
+
+        //add spell to active loadout
         $('.spell-adder').on('click',function() {
             //can access index because of the buttons data-index attribute
             var index = $(this).data('index');
@@ -68,13 +45,14 @@ function spellDeck(selected_class, spellListName, listDesc) {
             console.log(currentLoadout);
 
             //adding spells actively in loadout to top of screen
-            $("#chosen-spells").empty()
+            $("#chosen-spells tbody").empty()
             for (let i =0; i < currentLoadout.length; i++) {
          
-                const p = $(`<p>${currentLoadout[i]}</p>`);
-                $("#chosen-spells").append(p)
+                const chosenSpell = $(`<tr><td>${currentLoadout[i]}</td></tr>`);
+                $("#chosen-spells tbody").append(chosenSpell)
             }
-        });  
+        }); 
+        
 
     }
 

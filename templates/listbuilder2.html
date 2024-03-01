@@ -1,9 +1,48 @@
 {%extends "base.html" %}{% block title %}Builder{%endblock%}
 {%block header%} <script src="static/js/test.js"></script> {%endblock%}
 {% block content %}
-    <div id="chosen-spells"></div>
-    <a href="#" class="btn btn-primary" id="post-loadout">submit</a>
-    <div id="spell-container"></div>
+    <div class = 'container'>
+        <div class = 'row'>
+        <div class="col-md-10">
+            <table class = "table" id="spell-container">
+                <thead>
+                    <tr>
+                        <th>
+                            Spell
+                        </th>
+                        <th>
+                            Spell Level
+                        </th>
+                        <th>
+                            Concentration
+                        </th>
+                        <th>
+                            Ritual
+                        </th>
+                        <th>
+                            Range
+                        </th>
+                        <th>
+                            Add/remove
+                        </th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="col-md-2">
+            <h4>{{spell_list_name}}</h4>
+            <table class = "table" id="chosen-spells">
+                <thead>
+                <tr><th>Spell</th></tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <a class="btn btn-primary" id="post-loadout">submit</a>
+        </div>
+        </div>
+    </div>
+    
     
     <script>
             $(document).ready(function () {
