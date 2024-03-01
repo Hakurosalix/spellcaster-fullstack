@@ -10,46 +10,46 @@ Spell Reference
 <h1 class="t1 py-4 text-center">Spell Reference</h1>
 
 <div class="container">
-    <form action="/builder2", method="POST">
+    <form action="/spell_reference", method="POST">
         <div class="row align-items-center">
             <div class="col pe-5">
                 <label for="spell_name" class="t1 form-label">Spell Name:</label> 
-                <input type="text" class="form-control" id="spell_name"> 
+                <input type="text" class="form-control" id="spell_name" name="spell_name"> 
             </div>
             <div class="col pe-5">
-                <label for="class" class="t1 form-label">Class:</label> 
-                <select id="class" class="form-select">
+                <label for="spell_class" class="t1 form-label">Class:</label> 
+                <select id="spell_class" class="form-select" name="spell_class">
                     <option selected>Choose...</option>
-                    <option value="bard">Bard</option>
-                    <option value="cleric">Cleric</option>
-                    <option value="druid">Druid</option>
-                    <option value="fighter">Fighter</option>
-                    <option value="paladin">Paladin</option>
-                    <option value="ranger">Ranger</option>
-                    <option value="druid">Druid</option>
-                    <option value="rogue">Rogue</option>
-                    <option value="sorcerer">Sorcerer</option>
-                    <option value="warlock">Warlock</option>
-                    <option value="wizard">Wizard</option>
+                    <option value="Bard">Bard</option>
+                    <option value="Cleric">Cleric</option>
+                    <option value="Druid">Druid</option>
+                    <option value="Fighter">Fighter</option>
+                    <option value="Paladin">Paladin</option>
+                    <option value="Ranger">Ranger</option>
+                    <option value="Druid">Druid</option>
+                    <option value="Rogue">Rogue</option>
+                    <option value="Sorcerer">Sorcerer</option>
+                    <option value="Warlock">Warlock</option>
+                    <option value="Wizard">Wizard</option>
                 </select>
             </div>
             <div class="col pe-5">
-                <label for="class" class="t1 form-label">School:</label> 
-                <select id="class" class="form-select">
+                <label for="school" class="t1 form-label">School:</label> 
+                <select id="school" class="form-select" name="spell_school">
                     <option selected>Choose...</option>
-                    <option value="evocation">Evocation</option>
-                    <option value="conjuration">Conjuration</option>
+                    <option value="Evocation">Evocation</option>
+                    <option value="Conjuration">Conjuration</option>
                     <option value="Abjuration">Abjuration</option>
-                    <option value="transmutation">Transmutation</option>
-                    <option value="enchantment">Enchantment</option>
-                    <option value="necromancy">Necromancy</option>
-                    <option value="divination">Divination</option>
-                    <option value="illusion">Illusion</option>
+                    <option value="Transmutation">Transmutation</option>
+                    <option value="Enchantment">Enchantment</option>
+                    <option value="Necromancy">Necromancy</option>
+                    <option value="Divination">Divination</option>
+                    <option value="Illusion">Illusion</option>
                 </select>
             </div>
             <div class="col pe-5">
-                <label for="class" class="t1 form-label">Level:</label> 
-                <select id="class" class="form-select">
+                <label for="level" class="t1 form-label">Level:</label> 
+                <select id="level" class="form-select" name="spell_level">
                     <option selected>Choose...</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -69,6 +69,37 @@ Spell Reference
         </div>  
     </form>
     <hr class="hr">
+
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Class</th>
+              <th scope="col">School</th>
+              <th scope="col">Level</th>
+            </tr>
+          </thead>
+        <tbody>
+            {% if data %}
+                {% for spell in data %}
+                <tr>
+                    <td>
+                        {{ spell.Name }}
+                    </td>
+                    <td>
+                        {{ spell.Classes }}
+                    </td>
+                    <td>
+                        {{ spell.School }}
+                    </td>
+                    <td>
+                        {{ spell.Level }}
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
 
 </div>
 
