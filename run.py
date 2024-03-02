@@ -41,20 +41,23 @@ def spelllist():
     data = None
     if request.method == 'POST':
         spell_name = request.form.get('spell_name')
-        spell_class = request.form.get('spell_class')
-        spell_school = request.form.get('spell_school')
-        spell_level = request.form.get('spell_level')
-        if spell_class == "Choose...":
-            spell_class = ""
-        if spell_school == "Choose...":
-            spell_school = ""
-        if spell_level == "Choose...":
-            spell_level = ""
+        spell_class, spell_school, spell_level = parse_reference_fields(request.form.get('spell_class'), 
+                                                                        request.form.get('spell_school'), 
+                                                                        request.form.get('spell_level'))
         data = get_db().get_reference_spells(spell_name, spell_class, spell_school, spell_level)
     else:
         data = get_db().get_reference_spells("", "", "", "")
     
     return render_template('spell_reference.html', data=data)
+
+def parse_reference_fields(spell_class, spell_school, spell_level):
+    if spell_class == "Choose...":
+        spell_class = ""
+    if spell_school == "Choose...":
+        spell_school = ""
+    if spell_level == "Choose...":
+        spell_level = ""
+    return spell_class, spell_school, spell_level
 
     
 
