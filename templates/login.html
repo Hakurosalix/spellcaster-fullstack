@@ -20,6 +20,12 @@ Log In
 </div>
 {% endif %}
 
+{% if confirm_message %}
+<div class="alert alert-success">
+    {{ confirm_message }}
+</div>
+{% endif %}
+
 <form method="POST" action="/login" class="pt-3">
     <div class="form-group row py-1">
         <label for="example-text-input" class="t1 col-2 col-form-label">Username</label>

@@ -3,7 +3,7 @@
 
 import os
 
-from flask import Flask, g, json, render_template, request, session, redirect, jsonify
+from flask import Flask, g, json, render_template, request, session, redirect, jsonify, url_for
 from passlib.hash import pbkdf2_sha256
 from db import Database
 
@@ -72,7 +72,8 @@ def create_user():
             if typed_password == retyped_password:
                 encrypted_password = pbkdf2_sha256.hash(typed_password)
                 get_db().create_user(username, encrypted_password)
-                return redirect('/login')
+                confirm_message = "User successfully created!"
+                return redirect(url_for('login', confirm_message=confirm_message))
             else:
                 message = "Retyped password does not match typed password, please try again"
     return render_template('create_user.html', message=message)
@@ -80,6 +81,7 @@ def create_user():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     message = None
+    confirm_message = request.args.get('confirm_message', None)
     if request.method == 'POST':
         username = request.form.get('username')
         typed_password = request.form.get('password')
@@ -97,7 +99,7 @@ def login():
             message = "Missing password, please try again"
         elif not username and typed_password:
             message = "Missing username, please try again"
-    return render_template('login.html', message=message)
+    return render_template('login.html', message=message, confirm_message=confirm_message)
 
 @app.route('/logout')
 def logout():
