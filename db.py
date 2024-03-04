@@ -34,7 +34,7 @@ class Database:
             return None
 
     def get_class_spells(self, selected_class):
-        data = self.select(f"SELECT * FROM spell_info WHERE Classes LIKE '%{selected_class}%'")
+        data = self.select(f"SELECT * FROM spell_info WHERE Classes LIKE '%{selected_class}%' ORDER BY spell_level")
         return data
     
     def get_spell(self, Name):

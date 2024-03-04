@@ -124,7 +124,7 @@ def builder2():
 
 @app.route('/api/class_spells', methods=['GET'])
 def get_class_spell_list():
-    selected_class = request.args.get('selected_class')
+    selected_class = request.args.get('fetchedClass')
     return get_db().get_class_spells(selected_class)
 
 @app.route('/api/post_loadout', methods=['POST'])
@@ -132,9 +132,14 @@ def retrieve_loadout():
     loadout = request.form.getlist('loadout[]')
     loadout_name = request.form.get('spell_list_name')
     desc = request.form.get('list_desc')
-    print(loadout_name)
-    print(desc)
-    print(loadout)
+    selected_class = request.form.get('selected_class')
+    if 'user' in session.keys():
+        for spell in loadout:
+            get_db().insert_spell_for_loadout(session['user']['id'], loadout_name, selected_class, desc, spell)
+        loadout_table = (get_db().get_user_loadouts(session['user']['id']), "got loadout")
+
+        
+    
     return redirect('/')
 
 if __name__ == '__main__':

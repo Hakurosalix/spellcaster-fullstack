@@ -7,34 +7,33 @@
             <table class = "table" id="spell-container">
                 <thead>
                     <tr>
-                        <th>
+                        <th class = "tref">
                             Spell
                         </th>
-                        <th>
+                        <th class = "tref">
                             Spell Level
                         </th>
-                        <th>
+                        <th class = "tref">
                             Concentration
                         </th>
-                        <th>
+                        <th class = "tref">
                             Ritual
                         </th>
-                        <th>
+                        <th class = "tref">
                             Range
                         </th>
-                        <th>
-                            Add/remove
-                        </th>
+                        <th class = "tref"></th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </div>
         <div class="col-md-2">
-            <h4>{{spell_list_name}}</h4>
+            <h3>{{spell_list_name}}</h3>
+            <h4>{{desc}}</h4>
             <table class = "table" id="chosen-spells">
                 <thead>
-                <tr><th>Spell</th></tr>
+                <tr><th class="tref">Spell</th></tr>
                 </thead>
                 <tbody></tbody>
             </table>
@@ -49,7 +48,7 @@
                 const selectedClass = '{{ selected_class | safe }}';
                 const spellListName = '{{ spell_list_name | safe }}';
                 const listDesc = '{{ desc | safe }}';
-                const allSpells = new spellDeck(selectedClass, spellListName, listDesc);
+                const allSpells = new spellTable(selectedClass, spellListName, listDesc);
                 allSpells.fetchSpells();
             });
     </script>
