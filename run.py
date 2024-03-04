@@ -3,7 +3,7 @@
 
 import os
 
-from flask import Flask, g, json, render_template, request, session, redirect, jsonify
+from flask import Flask, g, json, render_template, request, session, redirect, jsonify, url_for
 from passlib.hash import pbkdf2_sha256
 from db import Database
 
@@ -41,20 +41,23 @@ def spelllist():
     data = None
     if request.method == 'POST':
         spell_name = request.form.get('spell_name')
-        spell_class = request.form.get('spell_class')
-        spell_school = request.form.get('spell_school')
-        spell_level = request.form.get('spell_level')
-        if spell_class == "Choose...":
-            spell_class = ""
-        if spell_school == "Choose...":
-            spell_school = ""
-        if spell_level == "Choose...":
-            spell_level = ""
+        spell_class, spell_school, spell_level = parse_reference_fields(request.form.get('spell_class'), 
+                                                                        request.form.get('spell_school'), 
+                                                                        request.form.get('spell_level'))
         data = get_db().get_reference_spells(spell_name, spell_class, spell_school, spell_level)
     else:
         data = get_db().get_reference_spells("", "", "", "")
     
     return render_template('spell_reference.html', data=data)
+
+def parse_reference_fields(spell_class, spell_school, spell_level):
+    if spell_class == "Choose...":
+        spell_class = ""
+    if spell_school == "Choose...":
+        spell_school = ""
+    if spell_level == "Choose...":
+        spell_level = ""
+    return spell_class, spell_school, spell_level
 
     
 
@@ -69,7 +72,8 @@ def create_user():
             if typed_password == retyped_password:
                 encrypted_password = pbkdf2_sha256.hash(typed_password)
                 get_db().create_user(username, encrypted_password)
-                return redirect('/login')
+                confirm_message = "User successfully created!"
+                return redirect(url_for('login', confirm_message=confirm_message))
             else:
                 message = "Retyped password does not match typed password, please try again"
     return render_template('create_user.html', message=message)
@@ -77,6 +81,7 @@ def create_user():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     message = None
+    confirm_message = request.args.get('confirm_message', None)
     if request.method == 'POST':
         username = request.form.get('username')
         typed_password = request.form.get('password')
@@ -94,7 +99,7 @@ def login():
             message = "Missing password, please try again"
         elif not username and typed_password:
             message = "Missing username, please try again"
-    return render_template('login.html', message=message)
+    return render_template('login.html', message=message, confirm_message=confirm_message)
 
 @app.route('/logout')
 def logout():
