@@ -78,6 +78,7 @@ header {
     font-weight: bolder
 }
 
+thead th {position:sticky;top: 0; z-index: 1;}
 .tref {
    background-color: #2A2A37 !important;
    -webkit-text-fill-color: #E6C384; 
