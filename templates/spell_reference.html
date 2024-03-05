@@ -14,53 +14,46 @@ Spell Reference
         <div class="row align-items-center">
             <div class="col pe-5">
                 <label for="spell_name" class="t1 form-label">Spell Name:</label> 
-                <input type="text" class="form-control" id="spell_name" name="spell_name"> 
+                {% if spell_name %}
+                    <input type="text" class="form-control" id="spell_name" name="spell_name" value="{{spell_name}}"> 
+                {% else %}
+                    <input type="text" class="form-control" id="spell_name" name="spell_name">
+                {% endif %}
             </div>
             <div class="col pe-5">
                 <label for="spell_class" class="t1 form-label">Class:</label> 
                 <select id="spell_class" class="form-select" name="spell_class">
-                    <option selected>Choose...</option>
-                    <option value="Bard">Bard</option>
-                    <option value="Cleric">Cleric</option>
-                    <option value="Druid">Druid</option>
-                    <option value="Fighter">Fighter</option>
-                    <option value="Paladin">Paladin</option>
-                    <option value="Ranger">Ranger</option>
-                    <option value="Druid">Druid</option>
-                    <option value="Rogue">Rogue</option>
-                    <option value="Sorcerer">Sorcerer</option>
-                    <option value="Warlock">Warlock</option>
-                    <option value="Wizard">Wizard</option>
+                    {% for class in reference_classes %}
+                        {% if spell_class == class %}
+                            <option selected value="{{spell_class}}">{{ spell_class }}</option>
+                        {% else %}
+                            <option value="{{ class }}">{{ class }}</option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
             </div>
             <div class="col pe-5">
                 <label for="school" class="t1 form-label">School:</label> 
                 <select id="school" class="form-select" name="spell_school">
-                    <option selected>Choose...</option>
-                    <option value="Evocation">Evocation</option>
-                    <option value="Conjuration">Conjuration</option>
-                    <option value="Abjuration">Abjuration</option>
-                    <option value="Transmutation">Transmutation</option>
-                    <option value="Enchantment">Enchantment</option>
-                    <option value="Necromancy">Necromancy</option>
-                    <option value="Divination">Divination</option>
-                    <option value="Illusion">Illusion</option>
+                    {% for school in reference_schools %}
+                        {% if spell_school == school %}
+                            <option selected value="{{spell_school}}">{{ spell_school }}</option>
+                        {% else %}
+                            <option value="{{ school }}">{{ school }}</option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
             </div>
             <div class="col pe-5">
                 <label for="level" class="t1 form-label">Level:</label> 
                 <select id="level" class="form-select" name="spell_level">
-                    <option selected>Choose...</option>
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
+                    {% for level in reference_levels %}
+                        {% if spell_level == level %}
+                            <option selected value="{{spell_level}}">{{ spell_level }}</option>
+                        {% else %}
+                            <option value="{{ level }}">{{ level }}</option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
             </div>
             <div class="col text-center">
