@@ -76,8 +76,8 @@ Spell Reference
             {% if data %}
                 {% for spell in data %}
                 <tr>
-                    <td class="tref table-limit">
-                        {{ spell.Name }}
+                    <td class="tref-l table-limit">
+                        <a href='/spell_display' class="aref">{{ spell.Name }}</a>
                     </td>
                     <td class="tref table-limit">
                         {{ spell.Classes }}
