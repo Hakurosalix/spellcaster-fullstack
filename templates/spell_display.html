@@ -27,5 +27,49 @@ Spell Display
         <div class="col"></div>
     </div>
 </div>
+<div class="container-lg py-5">
+    <div class="row">
+        <div class="col-2">
+            <p class="t6">Classes:</p>
+            <p class="t1" style="height:90px">{{ data.Classes }}</p>
+            <br><br>
+            <p class="t6">Casting Time:</p>
+            <p class="t1">{{ data.Casting_Time }}</p>
+        </div>
+        <div class="col-2">
+            <p class="t6">School:</p>
+            <p class="t1" style="height:90px">{{ data.School }}</p>
+            <br><br>
+            <p class="t6">Duration:</p>
+            <p class="t1">{{ data.Range }}</p>
+        </div>
+        <div class="col-2">
+            <p class="t6">Level:</p>
+            <p class="t1" style="height:90px">{{ data.Level }}</p>
+            <br><br>
+            <p class="t6">Concentration:</p>
+            <p class="t1">{{ data.Concentration }}</p>
+        </div>
+        <div class="col-2">
+            <p class="t6">Range:</p>
+            <p class="t1" style="height:90px">{{ data.Range }}</p>
+            <br><br>
+            <p class="t6">Ritual:</p>
+            <p class="t1">{{ data.Ritual }}</p>
+        </div>
+        <div class="col-4">
+            <img class="img-fluid" src="/static/img/spellbook.png">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p class="t6">Description:</p>
+            <p class="t1">{{ data.Description }}</p>
+        </div>
+    </div>
+</div>
+<footer>
+    <a href="https://www.flaticon.com/free-icons/magic" class="t2 footer-contents" title="magic icons" style="font-size: 0.75em">Magic icon created by Culmbio - Flaticon</a>
+</footer>
 
 {% endblock %}

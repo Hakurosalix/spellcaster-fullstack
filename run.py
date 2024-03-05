@@ -68,13 +68,16 @@ def parse_reference_fields(spell_class, spell_school, spell_level):
 
 @app.route('/spell_display', methods=['GET'])
 def spell_display():
+    data = None
     spell_name = request.args.get('spellName')
     name_search = request.args.get('nameSearch')
     class_search = request.args.get('classSearch')
     school_search = request.args.get('schoolSearch')
     level_search = request.args.get('levelSearch')
+    data = get_db().get_spell(spell_name)
     return render_template('spell_display.html', spell_name=spell_name, name_search=name_search,
-                           class_search=class_search, school_search=school_search, level_search=level_search)
+                           class_search=class_search, school_search=school_search, level_search=level_search,
+                           data=data)
 
 @app.route('/create_user', methods=['GET', 'POST'])
 def create_user():
@@ -87,7 +90,7 @@ def create_user():
             if typed_password == retyped_password:
                 encrypted_password = pbkdf2_sha256.hash(typed_password)
                 get_db().create_user(username, encrypted_password)
-                confirm_message = "User successfully created!"
+                confirm_message = "User creation successful!"
                 return redirect(url_for('login', confirm_message=confirm_message))
             else:
                 message = "Retyped password does not match typed password, please try again"

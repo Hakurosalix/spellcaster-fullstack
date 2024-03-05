@@ -143,3 +143,23 @@ hr {
     margin: 20px 0;
     opacity: 1;
   }
+
+footer {
+    height:32px; 
+    width: 100%; 
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    bottom: 0pt;
+    left: 0pt;
+}
+
+.footer_contents {
+
+    height:24px; 
+    width: 1000px; 
+    margin:auto;
+
+}
