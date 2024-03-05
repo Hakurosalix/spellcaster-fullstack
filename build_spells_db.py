@@ -9,9 +9,13 @@ def convert_spell_data(url_end, keys_to_keep):
     spell_filtered = {}
     for key,value in keys_to_keep.items():
         spell_filtered[key] = spell[value]
+    list_of_classes = [i['name'] for i in spell['classes']]
+    
+    if 'Wizard' in list_of_classes:
+        list_of_classes.extend(['Fighter', 'Rogue'])
     spell_filtered['Classes']=[i['name'] for i in spell['classes']]
     spell_filtered['School'] = spell['school']['name']
-    spell_filtered['Classes'] = ", ".join(spell_filtered['Classes'])
+    spell_filtered['Classes'] = ", ".join(list_of_classes)
     spell_filtered['Components'] = ", ".join(spell_filtered['Components'])
     spell_filtered['Description'] = markdown.markdown("\n".join(spell_filtered['Description']))
     return list(spell_filtered.values())

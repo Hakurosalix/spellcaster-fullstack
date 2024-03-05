@@ -135,6 +135,7 @@ def retrieve_loadout():
         for spell in loadout:
             get_db().insert_spell_for_loadout(session['user']['id'], loadout_name, selected_class, desc, spell)
         loadout_table = (get_db().get_user_loadouts(session['user']['id']), "got loadout")
+        print(loadout_table)
 
         
     
