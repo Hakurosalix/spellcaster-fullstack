@@ -57,6 +57,8 @@ def parse_reference_fields(spell_class, spell_school, spell_level):
         spell_school = ""
     if spell_level == "Choose...":
         spell_level = ""
+    if spell_class == "Fighter" or spell_class == "Rogue":
+        spell_class = "Wizard"
     return spell_class, spell_school, spell_level
 
     
