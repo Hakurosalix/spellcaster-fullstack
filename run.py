@@ -66,7 +66,15 @@ def parse_reference_fields(spell_class, spell_school, spell_level):
         spell_level = ""
     return spell_class, spell_school, spell_level
 
-    
+@app.route('/spell_display', methods=['GET'])
+def spell_display():
+    spell_name = request.args.get('spellName')
+    name_search = request.args.get('nameSearch')
+    class_search = request.args.get('classSearch')
+    school_search = request.args.get('schoolSearch')
+    level_search = request.args.get('levelSearch')
+    return render_template('spell_display.html', spell_name=spell_name, name_search=name_search,
+                           class_search=class_search, school_search=school_search, level_search=level_search)
 
 @app.route('/create_user', methods=['GET', 'POST'])
 def create_user():

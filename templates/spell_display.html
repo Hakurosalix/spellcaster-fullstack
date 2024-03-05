@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% set active = "Spell Display" %}
+{% set active = "Spell Reference" %}
 
 {% block title %}
 Spell Display
@@ -7,4 +7,25 @@ Spell Display
 
 {% block content %}
 
-<h1 class="t1 py-4 text-center">Search for Spells</h1>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col">
+            <form method="POST" action="/spell_reference">
+                <input type="hidden" name="extra_submit_param" value="extra_submit_value">
+                <input name="spell_name" value="{{name_search}}" hidden>
+                <input name="spell_class" value="{{class_search}}" hidden>
+                <input name="spell_school" value="{{school_search}}" hidden>
+                <input name="spell_level" value="{{level_search}}" hidden>
+                <button type="submit" class="btn btn-lg btn-secondary t1">
+                Return to results
+                </button>
+            </form>
+        </div>
+        <div class="col">
+            <h1 class="t6 py-4 container-heading text-center" style="white-space:nowrap;">{{ spell_name }}</h1>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+{% endblock %}

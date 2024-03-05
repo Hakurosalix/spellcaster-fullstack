@@ -7,7 +7,7 @@ Spell Reference
 
 {% block content %}
 
-<h1 class="t1 py-4 text-center">Search for Spells</h1>
+<h1 class="t1 py-4 container-heading text-center">Search for Spells</h1>
 
 <div class="container">
     <form action="/spell_reference", method="POST">
@@ -17,7 +17,7 @@ Spell Reference
                 {% if spell_name %}
                     <input type="text" class="form-control" id="spell_name" name="spell_name" value="{{spell_name}}"> 
                 {% else %}
-                    <input type="text" class="form-control" id="spell_name" name="spell_name">
+                    <input type="text" class="form-control" id="spell_name" name="spell_name" placeholder="Enter a spell name...">
                 {% endif %}
             </div>
             <div class="col pe-5">
@@ -77,7 +77,7 @@ Spell Reference
                 {% for spell in data %}
                 <tr>
                     <td class="tref-l table-limit">
-                        <a href='/spell_display' class="aref">{{ spell.Name }}</a>
+                        <a href='/spell_display' class="aref" data-value="{{ spell.Name }}">{{ spell.Name }}</a>
                     </td>
                     <td class="tref table-limit">
                         {{ spell.Classes }}
@@ -95,5 +95,41 @@ Spell Reference
     </table>
 
 </div>
+
+<script>
+
+    function addHandlers() {
+        var links = document.getElementsByClassName('aref');
+        for (var i = 0; i < links.length; i++) {
+            links[i].addEventListener('click', sendData);
+        }
+    }
+
+    function sendData(event) {
+        var spellName = $(this).data('value')
+        var nameSearch = $('#spell_name').val()
+        var classSearch = $('#spell_class').val()
+        var schoolSearch = $('#school').val()
+        var levelSearch = $('#level').val()
+        $.ajax({
+            type: 'GET',
+            url: '/spell_display',
+            data: { 'spellName': spellName,
+                    'nameSearch': nameSearch,
+                    'classSearch': classSearch,
+                    'schoolSearch': schoolSearch,
+                    'levelSearch': levelSearch },
+            success: function(response) {
+                $('body').html(response)
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+        event.preventDefault();
+    }
+    window.addEventListener('load', addHandlers);
+
+</script>
 
 {% endblock %}
