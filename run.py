@@ -45,14 +45,14 @@ def spelllist():
     data = None
     spell_name, spell_class, spell_school, spell_level = None, None, None, None
     if request.method == 'POST':
-        spell_name = request.form.get('spell_name')
-        spell_class, spell_school, spell_level = parse_reference_fields(request.form.get('spell_class'), 
-                                                                        request.form.get('spell_school'), 
-                                                                        request.form.get('spell_level'))
+        spell_name = request.form.get('form_name')
+        spell_class, spell_school, spell_level = parse_reference_fields(request.form.get('form_class'), 
+                                                                        request.form.get('form_school'), 
+                                                                        request.form.get('form_level'))
         data = get_db().get_reference_spells(spell_name, spell_class, spell_school, spell_level)
     else:
         data = get_db().get_reference_spells("", "", "", "")
-    
+
     return render_template('spell_reference.html', data=data, spell_name=spell_name, spell_class=spell_class, 
                            spell_school=spell_school, spell_level=spell_level, reference_classes=reference_classes, 
                            reference_levels=reference_levels, reference_schools=reference_schools)
@@ -66,18 +66,12 @@ def parse_reference_fields(spell_class, spell_school, spell_level):
         spell_level = ""
     return spell_class, spell_school, spell_level
 
-@app.route('/spell_display', methods=['GET'])
+@app.route('/spell_display', methods=['POST', 'GET'])
 def spell_display():
     data = None
-    spell_name = request.args.get('spellName')
-    name_search = request.args.get('nameSearch')
-    class_search = request.args.get('classSearch')
-    school_search = request.args.get('schoolSearch')
-    level_search = request.args.get('levelSearch')
+    spell_name = request.args.get('data')
     data = get_db().get_spell(spell_name)
-    return render_template('spell_display.html', spell_name=spell_name, name_search=name_search,
-                           class_search=class_search, school_search=school_search, level_search=level_search,
-                           data=data)
+    return render_template('spell_display.html', spell_name=spell_name, data=data)
 
 @app.route('/create_user', methods=['GET', 'POST'])
 def create_user():

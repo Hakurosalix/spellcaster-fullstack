@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% set active = "Spell Reference" %}
+{% set active = "Spell Display" %}
 
 {% block title %}
 Spell Display
@@ -10,15 +10,8 @@ Spell Display
 <div class="container">
     <div class="row align-items-center">
         <div class="col">
-            <form method="POST" action="/spell_reference">
-                <input type="hidden" name="extra_submit_param" value="extra_submit_value">
-                <input name="spell_name" value="{{name_search}}" hidden>
-                <input name="spell_class" value="{{class_search}}" hidden>
-                <input name="spell_school" value="{{school_search}}" hidden>
-                <input name="spell_level" value="{{level_search}}" hidden>
-                <button type="submit" class="btn btn-lg btn-secondary t1">
-                Return to results
-                </button>
+            <form>
+                <input type="button" class="btn btn-lg btn-secondary t1" value="Go back!" onclick="goBack()">
             </form>
         </div>
         <div class="col">
@@ -27,7 +20,9 @@ Spell Display
         <div class="col"></div>
     </div>
 </div>
-<div class="container-lg py-5">
+
+<div class="container-lg py-1">
+    <hr class="hr">
     <div class="row">
         <div class="col-2">
             <p class="t6">Classes:</p>
@@ -61,6 +56,7 @@ Spell Display
             <img class="img-fluid" src="/static/img/spellbook.png">
         </div>
     </div>
+    <hr class="hr">
     <div class="row">
         <div class="col">
             <p class="t6">Description:</p>
@@ -71,5 +67,17 @@ Spell Display
 <footer>
     <a href="https://www.flaticon.com/free-icons/magic" class="t2 footer-contents" title="magic icons" style="font-size: 0.75em">Magic icon created by Culmbio - Flaticon</a>
 </footer>
+
+<script>
+    function goBack() {
+      // Navigate back one step in the history
+      window.history.go(-1);
+
+      // Reload the previous page after a short delay
+      setTimeout(function() {
+        window.location.reload();
+      }, 500); // Adjust the delay time as needed
+    }
+</script>
 
 {% endblock %}
