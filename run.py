@@ -66,7 +66,7 @@ def parse_reference_fields(spell_class, spell_school, spell_level):
         spell_level = ""
     return spell_class, spell_school, spell_level
 
-@app.route('/spell_display', methods=['POST', 'GET'])
+@app.route('/spell_display', methods=['GET'])
 def spell_display():
     data = None
     spell_name = request.args.get('data')

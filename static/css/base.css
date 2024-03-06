@@ -108,6 +108,10 @@ thead th {position:sticky;top: 0; z-index: 1;}
     text-decoration-color: #957FB8;
  }
 
+ .build-input {
+    width: 400px;
+ }
+
 .t1 {
     color: #E6C384;
 }

@@ -11,7 +11,7 @@ Spell Display
     <div class="row align-items-center">
         <div class="col">
             <form>
-                <input type="button" class="btn btn-lg btn-secondary t1" value="Go back!" onclick="goBack()">
+                <input type="button" class="btn btn-lg btn-secondary t1" value="Back to results" onclick="history.back()">
             </form>
         </div>
         <div class="col">
@@ -67,17 +67,5 @@ Spell Display
 <footer>
     <a href="https://www.flaticon.com/free-icons/magic" class="t2 footer-contents" title="magic icons" style="font-size: 0.75em">Magic icon created by Culmbio - Flaticon</a>
 </footer>
-
-<script>
-    function goBack() {
-      // Navigate back one step in the history
-      window.history.go(-1);
-
-      // Reload the previous page after a short delay
-      setTimeout(function() {
-        window.location.reload();
-      }, 500); // Adjust the delay time as needed
-    }
-</script>
 
 {% endblock %}

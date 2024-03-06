@@ -97,7 +97,6 @@ Spell Reference
 </div>
 
 <script>
-
     function addHandlers() {
         var links = document.getElementsByClassName('aref');
         for (var i = 0; i < links.length; i++) {
@@ -107,12 +106,13 @@ Spell Reference
 
     function sendData(event) {
         event.preventDefault();
-
+        /*
+        // Just in case history.back() decides to not be cooperative these may come in handy
         localStorage.setItem('nameSearch', document.getElementById('form_name').value);
         localStorage.setItem('classSearch', document.getElementById('form_class').value);
         localStorage.setItem('schoolSearch', document.getElementById('form_school').value);
         localStorage.setItem('levelSearch', document.getElementById('form_level').value);
-
+        */
         var spellName = $(this).data('value');
         var url = '/spell_display?data=' + encodeURIComponent(spellName);
         console.log("URL: " + url);
