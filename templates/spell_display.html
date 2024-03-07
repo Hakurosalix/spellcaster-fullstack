@@ -60,10 +60,21 @@ Spell Display
     <div class="row">
         <div class="col">
             <p class="t6">Description:</p>
-            <p class="t1">{{ data.Description }}</p>
+            <p class="t1">{{ data.Description | safe}}</p>
         </div>
     </div>
 </div>
 
+<script>
+    function addClass() {
+        var cells = document.getElementsByTagName('p');
+
+        for (var i = 0; i < cells.length; i++) {
+            cells[i].classList.add('t1');
+        }
+    }
+
+    window.addEventListener('load', addClass);
+</script>
 
 {% endblock %}
