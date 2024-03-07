@@ -119,7 +119,7 @@ def logout():
     return redirect('/')
 
 
-@app.route('/myloadouts', methods=['GET'])
+@app.route('/myloadouts', methods=['GET', 'POST'])
 def myloadouts():
     if 'user' in session.keys():
         loadouts = get_db().get_user_loadouts(session['user']['id'])
@@ -145,6 +145,8 @@ def loadout(loadout_id):
         full_spells = []
         for spell in spells:
             full_spells.append(get_db().get_spell(spell))
+
+        full_spells = [list(spell.values()) for spell in full_spells]
 
         n_spells = len(full_spells)
 
