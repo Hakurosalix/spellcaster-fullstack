@@ -132,6 +132,29 @@ thead th {position:sticky;top: 0; z-index: 1;}
     -webkit-text-fill-color: #D27E99;
  }
 
+ .tref-l {
+    background-color: #2A2A37 !important;
+    -webkit-text-fill-color: #E6C384; 
+ }
+
+ .tref-l:hover {
+    -webkit-text-fill-color: #957FB8;
+ }
+
+ .tref-l:hover ~ .tref {
+    -webkit-text-fill-color: #957FB8;
+ }
+
+ .aref {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: #957FB8;
+ }
+
+ .build-input {
+    width: 400px;
+ }
+
 .t1 {
     color: #E6C384;
 }
@@ -167,3 +190,23 @@ hr {
     margin: 20px 0;
     opacity: 1;
   }
+
+footer {
+    height:32px; 
+    width: 100%; 
+    background-image: none;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-position: 0% 0%;
+    position: fixed;
+    bottom: 0pt;
+    left: 0pt;
+}
+
+.footer_contents {
+
+    height:24px; 
+    width: 1000px; 
+    margin:auto;
+
+}

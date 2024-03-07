@@ -9,6 +9,10 @@ from db import Database
 
 DATABASE_PATH = 'spellcaster.db'
 
+reference_classes = ["Choose...", "Bard", "Cleric", "Druid", "Fighter", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"]
+reference_schools = ["Choose...", "Evocation", "Conjuration", "Abjuration", "Transmutation", "Enchantment", "Necromancy", "Divination", "Illusion"]
+reference_levels = ["Choose...", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
 app = Flask(__name__)
 app.secret_key = b'demokeynotreal!'
 
@@ -39,16 +43,19 @@ def about():
 @app.route('/spell_reference', methods=['GET', 'POST'])
 def spelllist():
     data = None
+    spell_name, spell_class, spell_school, spell_level = None, None, None, None
     if request.method == 'POST':
-        spell_name = request.form.get('spell_name')
-        spell_class, spell_school, spell_level = parse_reference_fields(request.form.get('spell_class'), 
-                                                                        request.form.get('spell_school'), 
-                                                                        request.form.get('spell_level'))
+        spell_name = request.form.get('form_name')
+        spell_class, spell_school, spell_level = parse_reference_fields(request.form.get('form_class'), 
+                                                                        request.form.get('form_school'), 
+                                                                        request.form.get('form_level'))
         data = get_db().get_reference_spells(spell_name, spell_class, spell_school, spell_level)
     else:
         data = get_db().get_reference_spells("", "", "", "")
-    
-    return render_template('spell_reference.html', data=data)
+
+    return render_template('spell_reference.html', data=data, spell_name=spell_name, spell_class=spell_class, 
+                           spell_school=spell_school, spell_level=spell_level, reference_classes=reference_classes, 
+                           reference_levels=reference_levels, reference_schools=reference_schools)
 
 def parse_reference_fields(spell_class, spell_school, spell_level):
     if spell_class == "Choose...":
@@ -57,11 +64,14 @@ def parse_reference_fields(spell_class, spell_school, spell_level):
         spell_school = ""
     if spell_level == "Choose...":
         spell_level = ""
-    if spell_class == "Fighter" or spell_class == "Rogue":
-        spell_class = "Wizard"
     return spell_class, spell_school, spell_level
 
-    
+@app.route('/spell_display', methods=['GET'])
+def spell_display():
+    data = None
+    spell_name = request.args.get('data')
+    data = get_db().get_spell(spell_name)
+    return render_template('spell_display.html', spell_name=spell_name, data=data)
 
 @app.route('/create_user', methods=['GET', 'POST'])
 def create_user():
@@ -74,7 +84,7 @@ def create_user():
             if typed_password == retyped_password:
                 encrypted_password = pbkdf2_sha256.hash(typed_password)
                 get_db().create_user(username, encrypted_password)
-                confirm_message = "User successfully created!"
+                confirm_message = "User creation successful!"
                 return redirect(url_for('login', confirm_message=confirm_message))
             else:
                 message = "Retyped password does not match typed password, please try again"

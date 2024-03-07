@@ -1,38 +1,57 @@
-{% extends "base.html" %} {% block title %}Builder{%endblock%}
+{% extends "base.html" %} 
+
+{% set active = "Loadout Builder" %}
+
+{% block title %}
+Builder
+{% endblock %}
+
+
 {%block content%}
 <html>
-    <body>
-        
-    
-    <h4>Here you can choose the spells you want for your next DnD Spellcaster. 
-        Please provide the name for htis spell list and you may optionally include any information
-        relevant in the Description box
-        div</h4>
-        <div class="container">
-            <form action="/builder2", method="POST">
-                <label for="spellListName">Spell List:</label> <br>
-                <input type="text" name="spellListName"> <br>
-                <label class="form-label" for="spellListDesc">Description:</label> <br>
-                <textarea name="spellListDesc" id = "spellListDesc" rows="4"></textarea> <br>
-                <label for="class">Choose your class:</label> <br>
-                <select id="class" name="class">
-                    <option value="bard">Bard</option>
-                    <option value="cleric">Cleric</option>
-                    <option value="druid">Druid</option>
-                    <option value="fighter">Fighter</option>
-                    <option value="paladin">Paladin</option>
-                    <option value="ranger">Ranger</option>
-                    <option value="druid">Druid</option>
-                    <option value="rogue">Rogue</option>
-                    <option value="sorcerer">Sorcerer</option>
-                    <option value="warlock">Warlock</option>
-                    <option value="wizard">Wizard</option>
-                  </select>
-                <br>
-                <input type="submit">
-            </form>
+<body>
+    <h1 class="t1 py-4 container-heading text-center">Loadout Builder</h1>
+    <p>
+        <div class="t1 text-center">Here you can begin to customize your next spellcaster!</div>
+        <div class="t6 text-center">Please provide the name for this loadout and (optional) any information
+        relevant in the Description box.</div>
+    </p>
+    <hr class="hr">
+    <div class="container p-5">
+        <div class="row">
+            <div class="col ps-5">
+                <form action="/builder2", method="POST">
+                    <label for="spellListName" class="t1 form-label">Loadout Title:</label> <br>
+                    <input type="text" class="form-control build-input" name="spellListName"> <br>
+                    <label class="t1 form-label" for="spellListDesc">Description:</label> <br>
+                    <textarea name="spellListDesc" id="spellListDesc" rows="4" class="build-input" style="font-size: 1.0rem;"></textarea> <br> <br>
+                    <label for="class" class="t1 form-label">Choose your class:</label> <br>
+                    <select id="class" name="class" class="form-select build-input">
+                        <option value="bard">Bard</option>
+                        <option value="cleric">Cleric</option>
+                        <option value="druid">Druid</option>
+                        <option value="fighter">Fighter</option>
+                        <option value="paladin">Paladin</option>
+                        <option value="ranger">Ranger</option>
+                        <option value="druid">Druid</option>
+                        <option value="rogue">Rogue</option>
+                        <option value="sorcerer">Sorcerer</option>
+                        <option value="warlock">Warlock</option>
+                        <option value="wizard">Wizard</option>
+                        </select>
+                    <br> 
+                    <button type="submit" class="btn btn-lg btn-secondary t1">Proceed</button>
+                </form>
+            </div>
+            <div class="col pe-5">
+                <img class="img-fluid" src="/static/img/dragon.png">
+            </div>
         </div>
-    </body>
+    </div>
+    <footer>
+        <a href='https://pngtree.com/freepng/dragon-logo-vector-illustration-to-generative-ai_13130228.html' class="t2 footer-contents" title="magic icons" style="font-size: 0.75em">png image from pngtree.com/</a>
+    </footer>
+</body>
     
     <script>
         function updateDropdownText(selectedClass) {
