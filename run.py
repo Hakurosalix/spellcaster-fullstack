@@ -108,24 +108,68 @@ def logout():
     session.pop('user', None)
     return redirect('/')
 
+
+@app.route('/myloadouts', methods=['GET'])
+def myloadouts():
+    if 'user' in session.keys():
+        loadouts = get_db().get_user_loadouts(session['user']['id'])
+        loadout_names = []
+        unique_loadouts = []
+        for loadout in loadouts:
+            name = loadout[2]
+            if name not in loadout_names:
+                unique_loadouts.append(loadout)
+                loadout_names.append(name)
+        
+        
+        print(loadout_names)
+        return render_template('myloadouts.html',loadouts = unique_loadouts)
+
+
+@app.route('/loadout/<loadout_id>')
+def loadout(loadout_id):
+    spells = []
+    if 'user' in session.keys():
+        spells = get_db().get_loadout_spell_names(session['user']['id'], loadout_id)
+        spells = [s[0] for s in spells]
+        full_spells = []
+        for spell in spells:
+            full_spells.append(get_db().get_spell(spell))
+
+        n_spells = len(full_spells)
+
+        return render_template('loadout.html', loadout_id=loadout_id, spells = full_spells,  n_spells =n_spells)
+
+
 @app.route('/builder1')
 def builder1():
     if 'user' in session.keys():
         return render_template('listbuilder1.html')
-    message = "You must be logged in to do that."
+    message = "You must be logged in to build a loadout."
     return render_template('login.html', message=message)
 
-@app.route('/builder2', methods=['POST'])
+
+@app.route('/builder2', methods=['GET','POST'])
 def builder2():
     selected_class = (request.form['class'])
     desc = request.form.get('spellListDesc')
     spell_list_name = request.form.get('spellListName')
-    return render_template('listbuilder2.html', selected_class=selected_class, desc=desc, spell_list_name=spell_list_name)
+    active_loadout = get_db().get_loadout_spell_names(session['user']['id'], spell_list_name)
+    active_loadout = [l[0] for l in active_loadout]
+    active_loadout_json = json.dumps(active_loadout)
+    print(print((active_loadout)))
+    return render_template('listbuilder2.html', selected_class=selected_class, desc=desc, spell_list_name=spell_list_name, loadout=active_loadout_json)
 
 @app.route('/api/class_spells', methods=['GET'])
 def get_class_spell_list():
     selected_class = request.args.get('fetchedClass')
     return get_db().get_class_spells(selected_class)
+
+@app.route('/api/delete_loadout', methods=['POST'])
+def delete_loadout():
+    loadout_name = request.form.get('loadout_name')
+    if 'user' in session.keys():
+        get_db().delete_loadout(session['user']['id'], loadout_name)
 
 @app.route('/api/post_loadout', methods=['POST'])
 def retrieve_loadout():
@@ -134,14 +178,10 @@ def retrieve_loadout():
     desc = request.form.get('list_desc')
     selected_class = request.form.get('selected_class')
     if 'user' in session.keys():
+        get_db().delete_loadout(session['user']['id'], loadout_name)
         for spell in loadout:
             get_db().insert_spell_for_loadout(session['user']['id'], loadout_name, selected_class, desc, spell)
-        loadout_table = (get_db().get_user_loadouts(session['user']['id']), "got loadout")
-        print(loadout_table)
-
         
-    
-    return redirect('/')
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)
