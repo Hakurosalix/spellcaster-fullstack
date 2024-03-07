@@ -1,0 +1,12 @@
+.loadout-select{
+    display:inline-block;
+    border:none;
+    background-color: transparent;
+    -webkit-text-fill-color:#E6C384;
+    
+}
+.loadout-select:hover{
+    -webkit-text-fill-color:#927c54;
+    
+}
+

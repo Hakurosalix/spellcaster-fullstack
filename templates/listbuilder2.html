@@ -1,50 +1,76 @@
 {%extends "base.html" %}{% block title %}Builder{%endblock%}
+
 {%block header%} <script src="static/js/test.js"></script> {%endblock%}
 {% block content %}
+
+<body>
+<div id="overlay"></div>
+<div id="confModal" class = "modal">
+    <div class = "modal-content">
+        
+        <p>Are you certain you want to submit this loadout?</p>
+        <a class = "btn btn-secondary close" style="display:inline-block">no</a>
+        <a class = "btn btn-secondary" id =  "post-loadout" style="display:inline-block">post</a>
+    </div>
+</div>
     <div class = 'container'>
+        <div class="Row">
+            <h3 style = 'color:#E6C384'>{{spell_list_name}}</h3>
+            <h4 style = 'color:#E6C384'>{{desc}}</h4>
+            <div class = "container" id="chosen-spells">
+            </div>
+            <br>
+            <a class="btn btn-secondary" id="pre-post-loadout">submit</a>
+        </div>
         <div class = 'row'>
-        <div class="col-md-10">
-            <table class = "table" id="spell-container">
+        <div class="col-md-12">
+            <table class = "table border-black" id="spell-container">
                 <thead>
                     <tr>
-                        <th class = "tref">
+                        <th class = "tref-h">
                             Spell
                         </th>
-                        <th class = "tref">
+                        <th class = "tref-h">
                             Level
                         </th>
-                        <th class = "tref">
+                        <th class = "tref-h">
                             Concentration
                         </th>
-                        <th class = "tref">
+                        <th class = "tref-h">
                             Ritual
                         </th>
-                        <th class = "tref">
+                        <th class = "tref-h">
                             Range
                         </th>
-                        <th class = "tref"></th>
+                        <th class = "tref-h"></th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
         </div>
-        <div class="col-md-2">
-            <h3>{{spell_list_name}}</h3>
-            <h4>{{desc}}</h4>
-            <table class = "table" id="chosen-spells">
-                <thead>
-                <tr><th class="tref">Spell</th></tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-            <a class="btn btn-primary" id="post-loadout">submit</a>
-        </div>
         </div>
     </div>
+</body>
     
     
     <script>
             $(document).ready(function () {
+                var modalBtn = document.getElementById("pre-post-loadout");
+                var modal = document.getElementById("confModal");
+                var overlay = document.getElementById("overlay");
+                var closeBtn = document.getElementsByClassName("close")[0];
+
+                modalBtn.onclick =function() {
+                    overlay.style.display = "block";
+                    modal.style.display = "block";
+                }
+
+                closeBtn.onclick = function() {
+                    modal.style.display = "none";
+                    overlay.style.display = "none";
+                }
+
+
                 const selectedClass = '{{ selected_class | safe }}';
                 const spellListName = '{{ spell_list_name | safe }}';
                 const listDesc = '{{ desc | safe }}';
@@ -52,5 +78,18 @@
                 allSpells.fetchSpells();
             });
     </script>
+
+<style>
+    #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1; 
+    }
+</style>
 
 {% endblock %}

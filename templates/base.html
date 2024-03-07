@@ -18,6 +18,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <link rel="stylesheet" href="/static/css/base.css">
+    <link rel="stylesheet" href="/static/css/loadouts.css">
     <link rel="shortcut icon" href="#">
 
     {% block header %}{% endblock %}
@@ -65,7 +66,7 @@
                                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item-text t6">{{ session['user']['username'] }}</a></li>
                                         <li><a class="dropdown-item t1" href="/logout">Logout</a></li>
-                                        <li><a class="dropdown-item t1" href="#">My Loadouts</a></li>
+                                        <li><a class="dropdown-item t1" href="/myloadouts">My Loadouts</a></li>
                                     </ul>
                                 {% else %}
                                     <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

@@ -65,9 +65,13 @@ class Database:
         self.execute('INSERT INTO loadouts(user_id, loadout_name, class, description, spell_name) VALUES (?, ?, ?, ?, ?)',
                      [user_id, loadout_name, loadout_class, description, spell_name])
         
-    def get_loadout_spell_names(self, loadout_name):
-        data = self.select('SELECT loadouts.spell_name FROM loadouts WHERE loadouts.loadout_name = ?', [loadout_name])
+    def get_loadout_spell_names(self, user_id,loadout_name):
+        data = self.select('SELECT loadouts.spell_name FROM loadouts WHERE loadouts.user_id = ? AND loadouts.loadout_name = ?', [user_id, loadout_name])
         return data
+    
+    def delete_loadout(self, user_id, loadout_name):
+        self.execute("DELETE FROM loadouts WHERE loadouts.user_id = ? AND loadouts.loadout_name = ?", [user_id, loadout_name])
+        
     
     def get_reference_spells(self, spell_name, spell_class, spell_school, spell_level):
         data = self.select(f"SELECT * FROM spell_info WHERE spell_info.Name LIKE '%{spell_name}%' AND spell_info.Classes LIKE '%{spell_class}%' AND spell_info.School LIKE '%{spell_school}%' AND spell_info.Spell_Level LIKE '%{spell_level}%'")

@@ -78,6 +78,49 @@ header {
     font-weight: bolder
 }
 
+.loadout-component {
+    border: 3px solid #7e6b9e;
+    border-radius: 25px;
+    margin-right:10px;
+    font-size: 1rem;
+    padding: 15px;
+    position: relative;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.centered-text {
+    margin: 0; 
+    text-align: center; 
+}
+
+.remove-button {
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    cursor: pointer;
+}
+
+.modal {
+    display: none; 
+    position: fixed;
+    width: 30%; 
+    height: 100%; 
+    top:10%;
+    left:40%;
+}
+
+.fulldesc {
+    background: #23232d !important;
+    -webkit-text-fill-color: #E6C384; 
+    font-size: 1.25rem;
+}
+
+#chosen-spells {
+    display: flex;
+}
+
+
 thead th {position:sticky;top: 0; z-index: 1;}
 .tref {
    background-color: #2A2A37 !important;

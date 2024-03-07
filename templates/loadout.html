@@ -1,0 +1,99 @@
+{% extends "base.html" %} {% block title %}loadout{%endblock%}
+
+{%block content%}
+
+<table class = "table border-black" id="spell-container">
+    <thead>
+        <tr>
+            <th class = "tref-h">
+                Spell
+            </th>
+            <th class = "tref-h">
+                Level
+            </th>
+            <th class = "tref-h">
+                Concentration
+            </th>
+            <th class = "tref-h">
+                Ritual
+            </th>
+            <th class = "tref-h">
+                Range
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for i in range(n_spells)%}
+        <tr>
+            <td class = "tref">
+            <p class = "tref"  style="cursor: pointer;">{{spells[i][0][0]}}</span>
+            <a class="expand-desc" style="cursor: pointer; font-size:small;"  data-index="{{ i }}">[see more]</a>
+            </td>
+            <td class = "tref">
+                <p class = "tref">{{spells[i][0][1]}}</p>
+            </td>
+            <td class = "tref">
+                {%if spells[i][0][2] == 1%}
+                    <p class = "tref">Yes</p>
+                {%else%}
+                    <p class = "tref">No</p>
+                {%endif%}
+            </td>
+            <td class = "tref">
+                {%if spells[i][0][3] == 1%}
+                    <p class = "tref">Yes</p>
+                {%else%}
+                    <p class = "tref">No</p>
+                {%endif%}
+            </td>
+            <td class = "tref">
+                <p class = "tref">{{spells[i][0][4]}}</p>
+            </td>
+        </tr>
+        <tr class = "expanded-view" id="expanded-view-{{i}}" style = "display: none;">
+            <td colspan="6" class = "fulldesc">
+                <br>
+                <h3>{{spells[i][0][0]}}</h3>
+                <br>
+                <strong>Level:</strong> {{spells[i][0][1]}}
+                <br><br>
+                <strong> Concentration:</strong> {%if spells[i][0][2] == 1%}
+                            Yes
+                        {%else%}
+                            No
+                        {%endif%}
+                <br><br>
+                <strong>Ritual:</strong> {%if spells[i][0][3] == 1%}
+                            Yes
+                        {%else%}
+                            No
+                        {%endif%}
+                <br><br>
+                <strong>Range:</strong> {{spells[i][0][4]}}
+                <br><br>
+                <strong>Components:</strong> {{spells[i][0][5]}}
+                <br><br>
+                <strong>Duration:</strong> {{spells[i][0][6]}}
+                <br><br>
+                <strong>Casting Time:</strong> {{spells[i][0][7]}}
+                <br><br>
+                <strong>Classes:</strong> {{spells[i][0][8]}}
+                <br><br>
+                <strong>School:</strong> {{spells[i][0][9]}}
+                <br><br>
+                {{spells[i][0][10] | safe}}
+            </td></tr>
+        {%endfor%}
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('.expand-desc').on('click', function() {
+        var index = $(this).data('index');
+        $('#expanded-view-' + index).toggle();
+    });
+    })
+</script>
+
+{%endblock%}
