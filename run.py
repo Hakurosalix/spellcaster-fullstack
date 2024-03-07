@@ -172,6 +172,10 @@ def builder2():
     print(print((active_loadout)))
     return render_template('listbuilder2.html', selected_class=selected_class, desc=desc, spell_list_name=spell_list_name, loadout=active_loadout_json)
 
+@app.route('/user_loadouts')
+def user_loadouts():
+    return render_template('user_loadouts.html')
+
 @app.route('/api/class_spells', methods=['GET'])
 def get_class_spell_list():
     selected_class = request.args.get('fetchedClass')
