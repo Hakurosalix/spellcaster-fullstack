@@ -163,7 +163,7 @@ def builder1():
 
 @app.route('/builder2', methods=['GET','POST'])
 def builder2():
-    selected_class = (request.form['class'])
+    selected_class = (request.form['selected_class'])
     desc = request.form.get('spellListDesc')
     spell_list_name = request.form.get('spellListName')
     active_loadout = get_db().get_loadout_spell_names(session['user']['id'], spell_list_name)
@@ -186,7 +186,7 @@ def delete_loadout():
     if 'user' in session.keys():
         get_db().delete_loadout(session['user']['id'], loadout_name)
 
-@app.route('/api/post_loadout', methods=['POST'])
+@app.route('/api/post_loadout', methods=['GET','POST'])
 def retrieve_loadout():
     loadout = request.form.getlist('loadout[]')
     loadout_name = request.form.get('spell_list_name')

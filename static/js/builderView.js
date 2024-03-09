@@ -4,7 +4,7 @@ function spellTable(selected_class, spellListName, listDesc) {
     
     this.createTable = (spells) => {
         var activeSpellLevel = spells[0][1];
-        $('#spell-container tbody').append(`<tr><td class = "tref"><br><h3>Level ${activeSpellLevel}<\h3></td>
+        $('#spell-container tbody').append(`<tr><td class = "tref"><br><h3 style="font-color:#D27E99;">Level ${activeSpellLevel}<\h3></td>
         <td class = "tref"></td>
         <td class = "tref"></td>
         <td class = "tref"></td>
@@ -15,7 +15,7 @@ function spellTable(selected_class, spellListName, listDesc) {
                 <tr>
                     <td class = "tref">
                     <p class = "tref" data-index="${i}" style="cursor: pointer;">${spells[i][0]}</span>
-                    <a class="expand-desc" data-index="${i}" style="cursor: pointer; font-size:small;">[see more]</a>
+                    <a class="aref expand-desc" data-index="${i}" style="cursor: pointer; font-size:small; font-color:#957FB8;">[see more]</a>
                     </td>
                     <td class = "tref">
                         <p class = "tref">${spells[i][1]}</p>
@@ -103,7 +103,7 @@ function spellTable(selected_class, spellListName, listDesc) {
                                     </div>
                                     <span class="remove-button" style="color:#E6C384" data-name = "${currentLoadout[i]}">x</span>
                                     </div>`);
-                $("#chosen-spells").append(chosenSpell)
+                $("#chosen-spells").append(chosenSpell);
     
             }
         }); 
@@ -116,13 +116,12 @@ function spellTable(selected_class, spellListName, listDesc) {
         });
 
         $("#chosen-spells").on('click', '.remove-button', function() {
-            var spellName = $(this).data('name')
-            console.log(spellName)
+            var spellName = $(this).data('name');
             var spellIndex = currentLoadout.indexOf(spellName);
             if (spellIndex >= 0) {
                 currentLoadout.splice(spellIndex, 1);
             }
-            $("#chosen-spells").empty()
+            $("#chosen-spells").empty();
             for (let i =0; i < currentLoadout.length; i++) {
         
                 const chosenSpell = $(`<div class = "loadout-component">
@@ -131,7 +130,7 @@ function spellTable(selected_class, spellListName, listDesc) {
                                     </div>
                                     <span class="remove-button" style="color:#E6C384" data-name = "${currentLoadout[i]}">x</span>
                                     </div>`);
-                $("#chosen-spells").append(chosenSpell)
+                $("#chosen-spells").append(chosenSpell);
             }
         });
 
@@ -146,7 +145,7 @@ function spellTable(selected_class, spellListName, listDesc) {
 
         //expand the hidden description
         $('.expand-desc').on('click', function() {
-            var index = $(this).data('index')
+            var index = $(this).data('index');
             $('#expanded-view' + index).toggle();
         })
 
