@@ -4,6 +4,8 @@
     CS530: Final Project
 */
 
+@import url(https://fonts.googleapis.com/css?family=Baskerville);
+
 body {
     font-family: 'Baskerville', 'Trebuchet MS', sans-serif;
     font-size: 1.5rem;
@@ -41,6 +43,10 @@ header {
 .btn-primary:hover {
     background: #608C59;
     border-color: #406C39;
+}
+
+.plus {
+    -webkit-text-fill-color: #957FB8;
 }
 
 .navbar-expand-md .navbar-nav .nav-link {
@@ -191,6 +197,9 @@ thead th {position:sticky;top: 0; z-index: 1;}
 
 .t6 {
     color: #D27E99;
+}
+ .t6-plus {
+    -webkit-text-fill-color: #D27E99;
 }
 
 .t7 {

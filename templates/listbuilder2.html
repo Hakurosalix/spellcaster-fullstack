@@ -1,3 +1,9 @@
+<!--
+    Jack Manges, jm5244@drexel.edu
+    Zane Hamdan, zih23@drexel.edu
+    CS530: Final Project
+-->
+
 {%extends "base.html" %}{% block title %}Builder{%endblock%}
 
 {%block header%} <script src="static/js/builderView.js"></script> {%endblock%}
@@ -6,33 +12,33 @@
 <body>
 <div id="overlay"></div>
 <div id="confModal" class = "modal">
-    <div class = "modal-content">
-        <h5>Confirm Submission</h5>
-        <p>Are you certain you want to submit this loadout?</p>
+    <div class = "modal-content" style="background-color: #332b40;;">
+        <h5 class="t6 p-2">Confirm Submission</h5>
+        <p class="t1 p-2">Are you certain you want to submit this loadout?</p>
         <div style="display: flex; flex-direction: row; justify-content: space-between;">
-            <a class = "post-btn btn btn-secondary close" style="margin:2px; font-size:1rem; margin-left:auto;">Clear</a>
-            <a class = "post-btn btn btn-secondary" id = "post-loadout" style="margin:2px; font-size:1rem;">Confirm</a>
+            <a class = "post-btn btn btn-secondary close t1" style="margin:3px; font-size:1rem; margin-left:auto;">Clear</a>
+            <a class = "post-btn btn btn-secondary t1" id = "post-loadout" style="margin:3px; margin-right: 5px; font-size:1rem;">Confirm</a>
         </div>
         
     </div>
 </div>
     <div class = 'container'>
-        <div class="Row">
-            <h3 style = 'color:#E6C384'>{{spell_list_name}}</h3>
-            <h4 style = 'color:#E6C384'>{{desc}}</h4>
+        <div class="row py-2">
+            <h2 style = 'color:#E6C384'>{{spell_list_name}}</h3>
+            <h5 class="text-secondary" style = 'color:#E6C384'>{{desc}}</h4>
             <div class = "container" id="chosen-spells">
             <br>
             </div>
         
             <div style="display: flex; flex-direction: row; justify-content: space-between;">
-                <a class="btn btn-secondary" id="pre-post-loadout" style="margin:2px; font-size:1rem; margin-left:auto;">Save Loadout</a>
+                <a class="btn btn-secondary t1" id="pre-post-loadout" style="margin:2px; font-size:1rem; margin-left:auto;">Save Loadout</a>
             </div>
             
         </div>
         <div class = 'row'>
         <div class="col-md-12">
             <table class = "table border-black" id="spell-container">
-                <thead>
+                <thead style="border-bottom-width: 3px;">
                     <tr>
                         <th class = "tref-h">
                             Spell
