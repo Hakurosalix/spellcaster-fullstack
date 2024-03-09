@@ -32,7 +32,12 @@ def close_db(exception):
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    message = None
+    message = request.args.get('message', None)
+    if message is None:
+            return render_template('home.html')
+    else:
+        return render_template('home.html', message=message)
 
 
 @app.route('/about')
@@ -163,7 +168,7 @@ def builder1():
 
 @app.route('/builder2', methods=['GET','POST'])
 def builder2():
-    selected_class = (request.form['class'])
+    selected_class = request.form.get('class')
     desc = request.form.get('spellListDesc')
     spell_list_name = request.form.get('spellListName')
     active_loadout = get_db().get_loadout_spell_names(session['user']['id'], spell_list_name)
@@ -188,6 +193,7 @@ def delete_loadout():
 
 @app.route('/api/post_loadout', methods=['POST'])
 def retrieve_loadout():
+    print("Inside retrieve loadout function")
     loadout = request.form.getlist('loadout[]')
     loadout_name = request.form.get('spell_list_name')
     desc = request.form.get('list_desc')
@@ -196,7 +202,8 @@ def retrieve_loadout():
         get_db().delete_loadout(session['user']['id'], loadout_name)
         for spell in loadout:
             get_db().insert_spell_for_loadout(session['user']['id'], loadout_name, selected_class, desc, spell)
-        
+    
+    return 'OKAY'
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8080, debug=True)
