@@ -169,7 +169,6 @@ def builder2():
     active_loadout = get_db().get_loadout_spell_names(session['user']['id'], spell_list_name)
     active_loadout = [l[0] for l in active_loadout]
     active_loadout_json = json.dumps(active_loadout)
-    print(print((active_loadout)))
     return render_template('listbuilder2.html', selected_class=selected_class, desc=desc, spell_list_name=spell_list_name, loadout=active_loadout_json)
 
 @app.route('/user_loadouts')

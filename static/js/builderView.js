@@ -30,7 +30,7 @@ function spellTable(selected_class, spellListName, listDesc) {
                         <p class = "tref">${spells[i][4]}</p>
                     </td>
                     <td class = "tref">
-                        <a class = "t2 spell-adder" href = "#" data-index = "${i}">&#8853;</a>
+                        <span class = "t2 spell-adder" href = "#" data-index = "${i}">+</span>
                     </td>
                 </tr>
             `);
@@ -86,6 +86,13 @@ function spellTable(selected_class, spellListName, listDesc) {
             if (spellIndex === -1) {
                 currentLoadout.push(spellName);
             }
+
+            $('.spell-adder').each(function () {
+                var buttonIndex = $(this).data('index');
+                var buttonText = currentLoadout.includes(spells[buttonIndex][0]) ? '✓' : '+';
+                $(this).text(buttonText);
+            });
+
             //adding spells actively into loadout display
             $("#chosen-spells").empty()
             for (let i =0; i < currentLoadout.length; i++) {
@@ -101,6 +108,12 @@ function spellTable(selected_class, spellListName, listDesc) {
             }
         }); 
 
+        
+        $('.spell-adder').on('mouseenter', function () {
+            $(this).css('color', "#7e6b9e");
+        }).on('mouseleave', function () {
+            $(this).css('color', "#E6C384"); 
+        });
 
         $("#chosen-spells").on('click', '.remove-button', function() {
             var spellName = $(this).data('name')
@@ -163,7 +176,7 @@ function spellTable(selected_class, spellListName, listDesc) {
 
         document.getElementById("confModal").style.display = "none";
         document.getElementById("overlay").style.display = "none";
-        window.location.href = '/myloadouts'; 
+        window.location.href = '/'; 
     })
 
     this.fetchSpells = () => {
@@ -178,6 +191,7 @@ function spellTable(selected_class, spellListName, listDesc) {
         })
     }
 
-} 
 
+
+} 
 

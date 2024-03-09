@@ -1,16 +1,19 @@
 {%extends "base.html" %}{% block title %}Builder{%endblock%}
 
-{%block header%} <script src="static/js/test.js"></script> {%endblock%}
+{%block header%} <script src="static/js/builderView.js"></script> {%endblock%}
 {% block content %}
 
 <body>
 <div id="overlay"></div>
 <div id="confModal" class = "modal">
     <div class = "modal-content">
-        
+        <h5>Confirm Submission</h5>
         <p>Are you certain you want to submit this loadout?</p>
-        <a class = "btn btn-secondary close" style="display:inline-block">no</a>
-        <a class = "btn btn-secondary" id =  "post-loadout" style="display:inline-block">post</a>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <a class = "post-btn btn btn-secondary close" style="margin:2px; font-size:1rem; margin-left:auto;">Clear</a>
+            <a class = "post-btn btn btn-secondary" id = "post-loadout" style="margin:2px; font-size:1rem;">Confirm</a>
+        </div>
+        
     </div>
 </div>
     <div class = 'container'>
@@ -18,9 +21,13 @@
             <h3 style = 'color:#E6C384'>{{spell_list_name}}</h3>
             <h4 style = 'color:#E6C384'>{{desc}}</h4>
             <div class = "container" id="chosen-spells">
-            </div>
             <br>
-            <a class="btn btn-secondary" id="pre-post-loadout">submit</a>
+            </div>
+        
+            <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <a class="btn btn-secondary" id="pre-post-loadout" style="margin:2px; font-size:1rem; margin-left:auto;">Save Loadout</a>
+            </div>
+            
         </div>
         <div class = 'row'>
         <div class="col-md-12">

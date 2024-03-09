@@ -18,7 +18,6 @@
                         <td class = 'tref'>
                             <a class = "loadout-select" href="{{ url_for('loadout', loadout_id=loadout[2]) }}">{{loadout[2]}}</a>
                             <p style="display:inline-block;font-size: 1rem;">&ensp; <em>{{loadout[3]}}</em></p>
-                            <a class="edit" href="#" style = "float:right; display:inline-block; font-size:1rem;" data-name="{{loadout[2]}}">edit</a>
                             <a class="delete" href="#" style = "float:right; display:inline-block; padding-right:4px; font-size:1rem" data-name="{{loadout[2]}}">delete</a>
                             {%if loadout[4] == "" %}
                                 <p style="font-size: 1rem;opacity: 0.7;">&emsp; <em>no description </em></p>
@@ -42,10 +41,9 @@ $(".edit").on("click", function () {
 
 $(".delete").on("click", function () {
             var loadoutName = $(this).data("name");
-            console.log("del button clicked for loadout:", loadoutName);
             $.post('/api/delete_loadout', {
                 loadout_name: loadoutName
-            })
+            }, location.reload())
             
 })
 
