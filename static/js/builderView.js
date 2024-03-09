@@ -172,11 +172,12 @@ function spellTable(selected_class, spellListName, listDesc) {
             selected_class:selected_class,
             spell_list_name:spellListName,
             list_desc:listDesc
-        })
-
-        document.getElementById("confModal").style.display = "none";
-        document.getElementById("overlay").style.display = "none";
-        window.location.href = '/'; 
+        }).done(function(response) {
+            document.getElementById("confModal").style.display = "none";
+            document.getElementById("overlay").style.display = "none";
+            var message = "Loadout creation successful!"
+            window.location.href = '/?message='+message; 
+        });
     })
 
     this.fetchSpells = () => {
