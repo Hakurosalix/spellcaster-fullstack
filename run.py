@@ -1,5 +1,6 @@
 # Jack Manges, jm5244@drexel.edu
-# CS530: Assignment 1
+# Zane Hamdan, zih23@drexel.edu
+# CS530: Final Project 
 
 import os
 
@@ -175,10 +176,6 @@ def builder2():
     active_loadout = [l[0] for l in active_loadout]
     active_loadout_json = json.dumps(active_loadout)
     return render_template('listbuilder2.html', selected_class=selected_class, desc=desc, spell_list_name=spell_list_name, loadout=active_loadout_json)
-
-@app.route('/user_loadouts')
-def user_loadouts():
-    return render_template('user_loadouts.html')
 
 @app.route('/api/class_spells', methods=['GET'])
 def get_class_spell_list():
