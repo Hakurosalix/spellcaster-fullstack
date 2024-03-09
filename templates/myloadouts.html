@@ -43,8 +43,9 @@ $(".delete").on("click", function () {
             var loadoutName = $(this).data("name");
             $.post('/api/delete_loadout', {
                 loadout_name: loadoutName
-            }, location.reload())
-            
+            }).done(function(response) {
+                location.reload();
+            });
 })
 
 

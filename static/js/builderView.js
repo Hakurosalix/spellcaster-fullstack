@@ -149,12 +149,7 @@ function spellTable(selected_class, spellListName, listDesc) {
             var index = $(this).data('index')
             $('#expanded-view' + index).toggle();
         })
-
-
-
-
     }
-
 
     $('.expand-desc').hover(
         function() {

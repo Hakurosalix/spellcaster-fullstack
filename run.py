@@ -191,6 +191,8 @@ def delete_loadout():
     if 'user' in session.keys():
         get_db().delete_loadout(session['user']['id'], loadout_name)
 
+    return 'OKAY'
+
 @app.route('/api/post_loadout', methods=['POST'])
 def retrieve_loadout():
     print("Inside retrieve loadout function")
