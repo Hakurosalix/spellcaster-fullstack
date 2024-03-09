@@ -167,15 +167,16 @@ def builder1():
     return render_template('login.html', message=message)
 
 
-@app.route('/builder2', methods=['GET','POST'])
+@app.route('/builder2', methods=['GET', 'POST'])
 def builder2():
     selected_class = request.form.get('class')
     desc = request.form.get('spellListDesc')
     spell_list_name = request.form.get('spellListName')
-    active_loadout = get_db().get_loadout_spell_names(session['user']['id'], spell_list_name)
-    active_loadout = [l[0] for l in active_loadout]
-    active_loadout_json = json.dumps(active_loadout)
-    return render_template('listbuilder2.html', selected_class=selected_class, desc=desc, spell_list_name=spell_list_name, loadout=active_loadout_json)
+    print(request.form)
+    #active_loadout = get_db().get_loadout_spell_names(session['user']['id'], spell_list_name)
+    #active_loadout = [l[0] for l in active_loadout]
+    #active_loadout_json = json.dumps(active_loadout)
+    return render_template('listbuilder2.html', selected_class=selected_class, desc=desc, spell_list_name=spell_list_name)
 
 @app.route('/api/class_spells', methods=['GET'])
 def get_class_spell_list():
