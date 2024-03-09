@@ -78,6 +78,8 @@ header {
     font-weight: bolder
 }
 
+
+
 .loadout-component {
     border: 3px solid #7e6b9e;
     border-radius: 25px;
@@ -106,10 +108,17 @@ header {
     position: fixed;
     width: 30%; 
     height: 100%; 
-    top:10%;
     left:40%;
 }
 
+
+
+.modal-content {
+    margin-bottom: 20px;
+    font-size: 1rem;
+    display: flex; 
+    flex-direction: column;
+}
 .fulldesc {
     background: #23232d !important;
     -webkit-text-fill-color: #E6C384; 
@@ -120,6 +129,10 @@ header {
     display: flex;
 }
 
+.spell-adder {
+    cursor: pointer;
+    font-size: 2rem;
+}
 
 thead th {position:sticky;top: 0; z-index: 1;}
 .tref {
