@@ -109,7 +109,7 @@ function spellTable(selected_class, spellListName, listDesc) {
                                     </div>
                                     <span class="remove-button" style="color:#E6C384" data-name = "${currentLoadout[i]}">x</span>
                                     </div>`);
-                $("#chosen-spells").append(chosenSpell)
+                $("#chosen-spells").append(chosenSpell);
     
             }
         }); 
@@ -128,7 +128,7 @@ function spellTable(selected_class, spellListName, listDesc) {
             if (spellIndex >= 0) {
                 currentLoadout.splice(spellIndex, 1);
             }
-            $("#chosen-spells").empty()
+            $("#chosen-spells").empty();
             for (let i =0; i < currentLoadout.length; i++) {
         
                 const chosenSpell = $(`<div class = "loadout-component">
@@ -152,7 +152,7 @@ function spellTable(selected_class, spellListName, listDesc) {
 
         //expand the hidden description
         $('.expand-desc').on('click', function() {
-            var index = $(this).data('index')
+            var index = $(this).data('index');
             $('#expanded-view' + index).toggle();
         });
     }
