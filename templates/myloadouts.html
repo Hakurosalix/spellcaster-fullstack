@@ -13,22 +13,24 @@
     <div class="col-md-8">
 
         <table class = "table border-black" id = "loadout-list">
-            <thead>
+            <thead style="border-bottom-width: 3px;">
                 <tr>
-                    <th class = "tref-h">Loadouts:</th>
+                    <th class = "tref-h">
+                        <h1 class="t6 py-2 container-heading">User Loadouts:</h1>
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 {%for loadout in loadouts%}
                     <tr>
                         <td class = 'tref'>
-                            <a class = "loadout-select" href="{{ url_for('loadout', loadout_id=loadout[2]) }}">{{loadout[2]}}</a>
-                            <p style="display:inline-block;font-size: 1rem;">&ensp; <em>{{loadout[3]}}</em></p>
-                            <a class="delete" href="#" style = "float:right; display:inline-block; padding-right:4px; font-size:1rem" data-name="{{loadout[2]}}">delete</a>
+                            <a class = "loadout-select aref tref-l" style="font-size: 2.0rem;" href="{{ url_for('loadout', loadout_id=loadout[2]) }}">{{loadout[2]}}</a>
+                            <p class="px-2 t5-plus" style="display:inline-block;font-size: 1.25rem;">&ensp; <em>{{loadout[3]}}</em></p>
+                            <a class="delete aref tref-l" href="#" style = "float:right; display:inline-block; padding-right:4px; font-size:1.25rem" data-name="{{loadout[2]}}">delete</a>
                             {%if loadout[4] == "" %}
-                                <p style="font-size: 1rem;opacity: 0.7;">&emsp; <em>no description </em></p>
+                                <p style="font-size: 1.25rem;opacity: 0.7;">&emsp; <em>no description </em></p>
                             {%else%}
-                                 <p style="font-size: 1rem;opacity: 0.7;">&emsp; <em>{{loadout[4]}}</em></p>
+                                 <p style="font-size: 1.25rem;opacity: 0.7;">&emsp; <em>{{loadout[4]}}</em></p>
                             {%endif%}
                         </td>
                     </tr>

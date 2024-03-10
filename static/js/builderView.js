@@ -21,7 +21,7 @@ function spellTable(selected_class, spellListName, listDesc) {
                 <tr>
                     <td class = "tref">
                     <p class = "tref" data-index="${i}" style="cursor: pointer;">${spells[i][0]}</span>
-                    <a class="expand-desc plus aref" data-index="${i}" style="cursor: pointer; font-size:small;">[see more]</a>
+                    <a class="expand-desc plus aref tref-l" data-index="${i}" style="cursor: pointer; font-size:small;">[see more]</a>
                     </td>
                     <td class = "tref">
                         <p class = "tref">${spells[i][1]}</p>
