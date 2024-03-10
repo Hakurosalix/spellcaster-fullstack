@@ -1,6 +1,7 @@
 /*
     Jack Manges, jm5244@drexel.edu
-    CS530: Assignment 1
+    Zane Hamdan, zih23@drexel.edu
+    CS530: Final Project
 */
 
 body {
@@ -40,6 +41,10 @@ header {
 .btn-primary:hover {
     background: #608C59;
     border-color: #406C39;
+}
+
+.plus {
+    -webkit-text-fill-color: #957FB8;
 }
 
 .navbar-expand-md .navbar-nav .nav-link {
@@ -151,7 +156,7 @@ thead th {position:sticky;top: 0; z-index: 1;}
  }
 
  .tref-l:hover {
-    -webkit-text-fill-color: #957FB8;
+    -webkit-text-fill-color: #957FB8 !important;
  }
 
  .tref-l:hover ~ .tref {
@@ -181,15 +186,27 @@ thead th {position:sticky;top: 0; z-index: 1;}
 }
 
 .t4 {
-    color: #7FB4CA
+    color: #7FB4CA;
+}
+
+.t4-plus {
+    -webkit-text-fill-color: #7FB4CA;
 }
 
 .t5 {
     color: #7AA89F;
 }
 
+.t5-plus {
+    -webkit-text-fill-color: #7AA89F;
+}
+
 .t6 {
     color: #D27E99;
+}
+
+ .t6-plus {
+    -webkit-text-fill-color: #D27E99;
 }
 
 .t7 {

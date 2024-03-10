@@ -1,3 +1,7 @@
+# Jack Manges, jm5244@drexel.edu
+# Zane Hamdan, zih23@drexel.edu
+# CS530: Final Project 
+
 import sqlite3
 
 

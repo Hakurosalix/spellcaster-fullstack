@@ -1,10 +1,16 @@
+/*
+    Jack Manges, jm5244@drexel.edu
+    Zane Hamdan, zih23@drexel.edu
+    CS530: Final Project
+*/
+
 function spellTable(selected_class, spellListName, listDesc) {
 
     const currentLoadout = [];
     
     this.createTable = (spells) => {
         var activeSpellLevel = spells[0][1];
-        $('#spell-container tbody').append(`<tr><td class = "tref"><br><h3 style="font-color:#D27E99;">Level ${activeSpellLevel}<\h3></td>
+        $('#spell-container tbody').append(`<tr><td class = "tref-h"><br><h3>Level ${activeSpellLevel}<\h3></td>
         <td class = "tref"></td>
         <td class = "tref"></td>
         <td class = "tref"></td>
@@ -15,7 +21,7 @@ function spellTable(selected_class, spellListName, listDesc) {
                 <tr>
                     <td class = "tref">
                     <p class = "tref" data-index="${i}" style="cursor: pointer;">${spells[i][0]}</span>
-                    <a class="aref expand-desc" data-index="${i}" style="cursor: pointer; font-size:small; font-color:#957FB8;">[see more]</a>
+                    <a class="expand-desc plus aref tref-l" data-index="${i}" style="cursor: pointer; font-size:small;">[see more]</a>
                     </td>
                     <td class = "tref">
                         <p class = "tref">${spells[i][1]}</p>
@@ -30,7 +36,7 @@ function spellTable(selected_class, spellListName, listDesc) {
                         <p class = "tref">${spells[i][4]}</p>
                     </td>
                     <td class = "tref">
-                        <span class = "t2 spell-adder" href = "#" data-index = "${i}">+</span>
+                        <span class = "plus spell-adder" href = "#" data-index = "${i}">+</span>
                     </td>
                 </tr>
             `);
@@ -39,30 +45,30 @@ function spellTable(selected_class, spellListName, listDesc) {
                         <br>
                         <h3>${spells[i][0]}</h3>
                         <br>
-                        <strong>Level:</strong> ${spells[i][1]}
+                        <strong class="t6-plus">Level:</strong> ${spells[i][1]}
                         <br><br>
-                        <strong> Concentration:</strong> ${spells[i][2] === 1 ? 'Yes' : 'No'}
+                        <strong class="t6-plus"> Concentration:</strong> ${spells[i][2] === 1 ? 'Yes' : 'No'}
                         <br><br>
-                        <strong>Ritual:</strong> ${spells[i][3] === 1 ? 'Yes' : 'No'}
+                        <strong class="t6-plus">Ritual:</strong> ${spells[i][3] === 1 ? 'Yes' : 'No'}
                         <br><br>
-                        <strong>Range:</strong> ${spells[i][4]}
+                        <strong class="t6-plus">Range:</strong> ${spells[i][4]}
                         <br><br>
-                        <strong>Components:</strong> ${spells[i][5]}
+                        <strong class="t6-plus">Components:</strong> ${spells[i][5]}
                         <br><br>
-                        <strong>Duration:</strong> ${spells[i][6]}
+                        <strong class="t6-plus">Duration:</strong> ${spells[i][6]}
                         <br><br>
-                        <strong>Casting Time:</strong> ${spells[i][7]}
+                        <strong class="t6-plus">Casting Time:</strong> ${spells[i][7]}
                         <br><br>
-                        <strong>Classes:</strong> ${spells[i][8]}
+                        <strong class="t6-plus">Classes:</strong> ${spells[i][8]}
                         <br><br>
-                        <strong>School:</strong> ${spells[i][9]}
+                        <strong class="t6-plus">School:</strong> ${spells[i][9]}
                         <br><br>
                         ${spells[i][10]}
                         </td></tr>
             `)
             if (spells[i][1] != activeSpellLevel) {
                 activeSpellLevel = spells[i][1];
-                $('#spell-container tbody').append(`<tr><td class = "tref"><br><h3>Level ${activeSpellLevel}<\h3></td>
+                $('#spell-container tbody').append(`<tr><td class = "tref-h"><br><h3>Level ${activeSpellLevel}<\h3></td>
                 <td class = "tref"></td>
                 <td class = "tref"></td>
                 <td class = "tref"></td>
@@ -117,6 +123,7 @@ function spellTable(selected_class, spellListName, listDesc) {
 
         $("#chosen-spells").on('click', '.remove-button', function() {
             var spellName = $(this).data('name');
+            console.log(spellName);
             var spellIndex = currentLoadout.indexOf(spellName);
             if (spellIndex >= 0) {
                 currentLoadout.splice(spellIndex, 1);
@@ -147,13 +154,8 @@ function spellTable(selected_class, spellListName, listDesc) {
         $('.expand-desc').on('click', function() {
             var index = $(this).data('index');
             $('#expanded-view' + index).toggle();
-        })
-
-
-
-
+        });
     }
-
 
     $('.expand-desc').hover(
         function() {
