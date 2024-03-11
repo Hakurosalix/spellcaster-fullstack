@@ -27,7 +27,7 @@
         <tr>
             <td class = "tref">
             <p class = "tref"  style="cursor: pointer;">{{spells[i][0]}}</span>
-            <a class="expand-desc" style="cursor: pointer; font-size:small;"  data-index="{{ i }}">[see more]</a>
+            <a class="expand-desc aref tref-l" style="cursor: pointer; font-size:small;"  data-index="{{ i }}">[see more]</a>
             </td>
             <td class = "tref">
                 <p class = "tref">{{spells[i][1]}}</p>
@@ -55,31 +55,31 @@
                 <br>
                 <h3>{{spells[i][0]}}</h3>
                 <br>
-                <strong>Level:</strong> {{spells[i][1]}}
+                <strong class="t6-plus">Level:</strong> {{spells[i][1]}}
                 <br><br>
-                <strong> Concentration:</strong> {%if spells[i][2] == 1%}
+                <strong class="t6-plus"> Concentration:</strong> {%if spells[i][2] == 1%}
                             Yes
                         {%else%}
                             No
                         {%endif%}
                 <br><br>
-                <strong>Ritual:</strong> {%if spells[i][3] == 1%}
+                <strong class="t6-plus">Ritual:</strong> {%if spells[i][3] == 1%}
                             Yes
                         {%else%}
                             No
                         {%endif%}
                 <br><br>
-                <strong>Range:</strong> {{spells[i][4]}}
+                <strong class="t6-plus">Range:</strong> {{spells[i][4]}}
                 <br><br>
-                <strong>Components:</strong> {{spells[i][5]}}
+                <strong class="t6-plus">Components:</strong> {{spells[i][5]}}
                 <br><br>
-                <strong>Duration:</strong> {{spells[i][6]}}
+                <strong class="t6-plus">Duration:</strong> {{spells[i][6]}}
                 <br><br>
-                <strong>Casting Time:</strong> {{spells[i][7]}}
+                <strong class="t6-plus">Casting Time:</strong> {{spells[i][7]}}
                 <br><br>
-                <strong>Classes:</strong> {{spells[i][8]}}
+                <strong class="t6-plus">Classes:</strong> {{spells[i][8]}}
                 <br><br>
-                <strong>School:</strong> {{spells[i][9]}}
+                <strong class="t6-plus">School:</strong> {{spells[i][9]}}
                 <br><br>
                 {{spells[i][10] | safe}}
             </td></tr>
