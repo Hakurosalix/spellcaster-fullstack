@@ -49,14 +49,14 @@ Spell Display
             <p class="t1" style="height:90px">{{ data.Level }}</p>
             <br><br>
             <p class="t6">Concentration:</p>
-            <p class="t1">{{ data.Concentration }}</p>
+            <p class="t1">{{ 'Yes' if data.Concentration == 1 else 'No' }}</p>
         </div>
         <div class="col-2">
             <p class="t6">Range:</p>
             <p class="t1" style="height:90px">{{ data.Range }}</p>
             <br><br>
             <p class="t6">Ritual:</p>
-            <p class="t1">{{ data.Ritual }}</p>
+            <p class="t1">{{ 'Yes' if data.Ritual == 1 else 'No' }}</p>
         </div>
         <div class="col-4">
             <img class="img-fluid" src="/static/img/bookstack.png">
